@@ -4,7 +4,7 @@
 \alias{mean.test.single}
 \title{Test of Single Mean Vector}
 \usage{
-\method{mean}{test.single}(data, mu0, Sigma0 = FALSE, alpha = 0.05)
+mean.test.single(data, mu0, Sigma0 = FALSE, alpha = 0.05)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -20,6 +20,9 @@ A list containing the hypothesis, sample mean, sample diviation, statistics, df 
 }
 \description{
 Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown.
+}
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 66-68.
 }
 \author{
 Xifeng Zhang

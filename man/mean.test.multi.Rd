@@ -4,7 +4,7 @@
 \alias{mean.test.multi}
 \title{Test of Multiple Mean Vectors}
 \usage{
-\method{mean}{test.multi}(X, label, alpha = 0.05)
+mean.test.multi(X, label, alpha = 0.05)
 }
 \arguments{
 \item{X}{The data matrix which is a matrix or data frame.}
@@ -18,4 +18,7 @@ A list containing the hypothesis, sample size, total sample mean, within group m
 }
 \description{
 Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance).
+}
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 80-83.
 }

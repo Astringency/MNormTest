@@ -4,7 +4,7 @@
 \alias{mean.test.two}
 \title{Test of Two Mean Vectors}
 \usage{
-\method{mean}{test.two}(
+mean.test.two(
   data1,
   data2,
   alpha = 0.05,
@@ -28,4 +28,7 @@ A list containing the hypothesis, sample mean, sample diviation, statistics, df 
 }
 \description{
 Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
+}
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 76-80.
 }

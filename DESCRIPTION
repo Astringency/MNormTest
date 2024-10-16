@@ -1,14 +1,27 @@
 Package: MNormTest
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: A package for multivariate normal hypothesis testing
+Version: 1.0.0.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Xifeng", "Zhang", , "cnxifeng9819@163.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0001-8878-3753"))
+Maintainer: Xifeng Zhang <cnxifeng9819@163.com>
+URL: https://github.com/Astringency/MNormTest
+Description: A package for multivariate normal hypothesis testing, including the test of single mean vector, two mean vectors, multiple mean vectors, single covariance matrix, multiple covariance matrices, mean and covariance matrix at the same time, and independence test.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Imports: 
     Rmpfr
+Suggests:
+    rmarkdown,
+    knitr,
+    yaml,
+    testthat (>= 3.0.0),
+    covr,
+    devtools,
+    roxygen2,
+    pkgbuild
+References: 
+    高惠璇. 应用多元统计分析 [M]. 北京大学出版社, 2005: 76-80.
+Config/testthat/edition: 3

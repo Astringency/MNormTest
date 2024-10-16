@@ -21,3 +21,6 @@ A list containing the hypothesis, sample mean, sample diviation, statistics, df 
 \description{
 Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
 }
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 83-88.
+}

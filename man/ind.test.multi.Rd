@@ -19,3 +19,6 @@ A list containing the hypothesis, dimension, sample mean, sample diviation, samp
 \description{
 Independence tests for multivariate normal populations.
 }
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 92-94.
+}

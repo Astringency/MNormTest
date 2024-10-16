@@ -19,3 +19,6 @@ A list containing the hypothesis, sample size, total sample mean, within group m
 \description{
 Simultaneous testing of multiple multivariate normal overall mean vectors and covariance matrices.
 }
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 90-91.
+}

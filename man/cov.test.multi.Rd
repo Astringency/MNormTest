@@ -19,3 +19,6 @@ A list containing the hypothesis, sample size, total sample mean, within group m
 \description{
 Tests of multiple multivariate normal overall covariance arrays when the overall mean is unknown.
 }
+\references{
+高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 88-89.
+}
