@@ -17,5 +17,5 @@ ind.test.multi(data, subdim = FALSE, alpha = 0.05)
 A list containing the hypothesis, dimension, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 }
 \description{
-Test of Independence
+Independence tests for multivariate normal populations.
 }

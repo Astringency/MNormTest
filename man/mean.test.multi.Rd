@@ -17,5 +17,5 @@
 A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, df of Wilk's Lambda, df of Bartlett's Chi2, df of Rao's F, p value, approximate conclusion.
 }
 \description{
-Test of Multiple Mean Vectors
+Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance).
 }

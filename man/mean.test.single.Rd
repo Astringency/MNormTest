@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{mean.test.single}
 \alias{mean.test.single}
-\title{MNormTest}
+\title{Test of Single Mean Vector}
 \usage{
 \method{mean}{test.single}(data, mu0, Sigma0 = FALSE, alpha = 0.05)
 }
@@ -19,9 +19,8 @@
 A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 }
 \description{
-This package provides functions to test the mean vector and covariance matrix of multivariate normal distribution.
+Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown.
 }
 \author{
 Xifeng Zhang
-Test of Single Mean Vector
 }

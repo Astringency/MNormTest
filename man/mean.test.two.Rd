@@ -27,5 +27,5 @@
 A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 }
 \description{
-Test of Two Mean Vectors
+Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
 }

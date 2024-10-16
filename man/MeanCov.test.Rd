@@ -17,5 +17,5 @@ MeanCov.test(X, label, alpha = 0.05)
 A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 }
 \description{
-Test of Mean and Covariance Matrix at the Same Time
+Simultaneous testing of multiple multivariate normal overall mean vectors and covariance matrices.
 }

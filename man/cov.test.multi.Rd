@@ -17,5 +17,5 @@ cov.test.multi(X, label, alpha = 0.05)
 A list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 }
 \description{
-Test of Multiple Covariance Matrix
+Tests of multiple multivariate normal overall covariance arrays when the overall mean is unknown.
 }

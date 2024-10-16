@@ -19,5 +19,5 @@ cov.test.single(data, Sigma0, ball = FALSE, alpha = 0.05)
 A list containing the hypothesis, sample mean, sample diviation, statistics, df of Chi2, p value, critical value and conclusion.
 }
 \description{
-Test of Single Covariance Matrix
+Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
 }
