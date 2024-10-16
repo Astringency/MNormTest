@@ -7,10 +7,10 @@
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 66-68.
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.
 #' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 #' @export
-mean.test.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05) {
+meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05) {
   data <- as.matrix(data)
   n <- nrow(data)
   p <- ncol(data)
@@ -63,10 +63,10 @@ mean.test.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05) {
 #' @param method A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal. If you want to use the likelihood ratio test, please use the function "mean.test.multi".
 #' @import stats
 #' @import utils
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 76-80.
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
 #' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 #' @export
-mean.test.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("None", "Coupled", "Transformed")) {
+meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("None", "Coupled", "Transformed")) {
   data1 <- as.matrix(data1)
   data2 <- as.matrix(data2)
 
@@ -103,7 +103,7 @@ mean.test.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("
     ))
   } else {
     if (method == "None") {
-      print("Please choose a method in 'Coupled'、'Transformed' or 'LRT'")
+      print("Please choose a method in 'Coupled', 'Transformed' or 'LRT'")
     } else if (method == "Coupled" && n1 == n2) {
       datacoupled <- data1 - data2
       X.bar <- apply(datacoupled, 2, mean)
@@ -159,10 +159,10 @@ mean.test.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 80-83.
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.
 #' @return A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, df of Wilk's Lambda, df of Bartlett's Chi2, df of Rao's F, p value, approximate conclusion.
 #' @export
-mean.test.multi <- function(X, label, alpha = 0.05) {
+meanTest.multi <- function(X, label, alpha = 0.05) {
   data <- cbind(X, label)
   X <- as.matrix(X)
   n <- nrow(X)
@@ -226,23 +226,11 @@ mean.test.multi <- function(X, label, alpha = 0.05) {
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @import Rmpfr
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 83-88.
+#' @importFrom Rmpfr mpfr
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.
 #' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of Chi2, p value, critical value and conclusion.
 #' @export
-cov.test.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
-  if (require("Rmpfr")) {
-    print("Successfully loaded package 'Rmpfr'.")
-  } else {
-    print("Lack of package 'Rmpfr'. Now installing...")
-    install.packages("Rmpfr")
-    if (require("Rmpfr")) {
-      print("Successfully installed package 'Rmpfr'.")
-    } else {
-      stop("Failed to install package 'Rmpfr'.")
-    }
-  }
-
+covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
   data <- as.matrix(data)
   n <- nrow(data)
   p <- ncol(data)
@@ -251,7 +239,7 @@ cov.test.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
   A <- (n - 1) * cov(data)
 
   if (isFALSE(ball)) {
-    lambda <- exp(-1 / 2 * trace(A %*% solve(Sigma0))) * mpfr(det(A %*% solve(Sigma0)), 256)^(n / 2) * exp(n * p / 2) * n^(-np / 2)
+    lambda <- exp(-1 / 2 * trace(A %*% solve(Sigma0))) * Rmpfr::mpfr(det(A %*% solve(Sigma0)), 256)^(n / 2) * exp(n * p / 2) * n^(-n*p / 2)
     chi2 <- -2 * log(lambda)
 
     lambda <- as.numeric(lambda)
@@ -275,7 +263,7 @@ cov.test.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
     ))
   } else {
     sigma.hat <- trace(solve(Sigma0) %*% A) / (n * p)
-    lambda <- (mpfr(det(solve(Sigma0) %*% A), 256)^(n / 2)) / ((trace(solve(Sigma0) %*% A) / p)^(n * p / 2))
+    lambda <- (Rmpfr::mpfr(det(solve(Sigma0) %*% A), 256)^(n / 2)) / ((trace(solve(Sigma0) %*% A) / p)^(n * p / 2))
     W <- lambda^(2 / n)
     chi2 <- -((n - 1) - (2 * p^2 + p + 2) / (6 * p)) * log(W)
 
@@ -290,7 +278,7 @@ cov.test.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
     statistics <- data.frame("Statistics" = c("Likelihood Ratio", "W", "Chi2"), "Value" = c(lambda, W, chi2))
 
     return(list(
-      "Hypothesis" = ifelse((Sigma0 == diag(1, p)), "Mauchly’s test of sphericity. H0: Sigma = sigma2 * Ip", "H0: Sigma = sigma2 * Sigma0"),
+      "Hypothesis" = ifelse((Sigma0 == diag(1, p)), "Mauchly's test of sphericity. H0: Sigma = sigma2 * Ip", "H0: Sigma = sigma2 * Sigma0"),
       "Sample Mean" = X.bar,
       "Sample Diviation" = A,
       "sigma.hat" = sigma.hat,
@@ -310,23 +298,11 @@ cov.test.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05) {
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @import Rmpfr
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 88-89.
+#' @importFrom Rmpfr mpfr
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.
 #' @return A list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 #' @export
-cov.test.multi <- function(X, label, alpha = 0.05) {
-  if (require("Rmpfr")) {
-    print("Successfully loaded package 'Rmpfr'.")
-  } else {
-    print("Lack of package 'Rmpfr'. Now installing...")
-    install.packages("Rmpfr")
-    if (require("Rmpfr")) {
-      print("Successfully installed package 'Rmpfr'.")
-    } else {
-      stop("Failed to install package 'Rmpfr'.")
-    }
-  }
-
+covTest.multi <- function(X, label, alpha = 0.05) {
   data <- data.frame(cbind(X, label))
   X <- as.matrix(X)
   n <- nrow(X)
@@ -349,16 +325,16 @@ cov.test.multi <- function(X, label, alpha = 0.05) {
     cov(x)
   })
   St.root <- lapply(data.split, function(x) {
-    mpfr(det(cov(x)), 256)^(-(nrow(x) - 1) / 2)
+    Rmpfr::mpfr(det(cov(x)), 256)^(-(nrow(x) - 1) / 2)
   })
   St.sum <- lapply(data.split, function(x) {
-    (nrow(x) - 1) * log(mpfr(det(cov(x)), 256))
+    (nrow(x) - 1) * log(Rmpfr::mpfr(det(cov(x)), 256))
   })
   St.star <- lapply(data.split, function(x) {
     cov(x) * (nrow(x) - 1) / nrow(x)
   })
   St.star.root <- lapply(data.split, function(x) {
-    mpfr(det(cov(x) * (nrow(x) - 1) / nrow(x)), 256)^(-nrow(x) / 2)
+    Rmpfr::mpfr(det(cov(x) * (nrow(x) - 1) / nrow(x)), 256)^(-nrow(x) / 2)
   })
 
   lambda <- det(A / nrow(data))^(-n / 2) / Reduce("*", St.star.root)
@@ -412,23 +388,11 @@ cov.test.multi <- function(X, label, alpha = 0.05) {
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @import Rmpfr
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 90-91.
+#' @importFrom Rmpfr mpfr
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.90-91.
 #' @return A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 #' @export
-MeanCov.test <- function(X, label, alpha = 0.05) {
-  if (require("Rmpfr")) {
-    print("Successfully loaded package 'Rmpfr'.")
-  } else {
-    print("Lack of package 'Rmpfr'. Now installing...")
-    install.packages("Rmpfr")
-    if (require("Rmpfr")) {
-      print("Successfully installed package 'Rmpfr'.")
-    } else {
-      stop("Failed to install package 'Rmpfr'.")
-    }
-  }
-
+meancov.Test <- function(X, label, alpha = 0.05) {
   data <- data.frame(cbind(X, label))
   X <- as.matrix(X)
   n <- nrow(X)
@@ -448,14 +412,14 @@ MeanCov.test <- function(X, label, alpha = 0.05) {
   T <- (n - 1) * cov(X)
 
   lambda <- Reduce("*", lapply(data.split, function(x) {
-    mpfr(det((nrow(x) - 1) * cov(x)), 256)^(nrow(x) / 2)
-  })) / mpfr(det(T), 256)^(n / 2) * n^(n * p / 2) / mpfr(Reduce("*", lapply(data.split, function(x) {
+    Rmpfr::mpfr(det((nrow(x) - 1) * cov(x)), 256)^(nrow(x) / 2)
+  })) / Rmpfr::mpfr(det(T), 256)^(n / 2) * n^(n * p / 2) / Rmpfr::mpfr(Reduce("*", lapply(data.split, function(x) {
     nrow(x)^(nrow(x) * p / 2)
   })), 256)
 
   lambda.star <- Reduce("*", lapply(data.split, function(x) {
-    mpfr(det((nrow(x) - 1) * cov(x)), 256)^((nrow(x) - 1) / 2)
-  })) / mpfr(det(T), 256)^((n - k) / 2) * (n - k)^((n - k) * p / 2) / mpfr(Reduce("*", lapply(data.split, function(x) {
+    Rmpfr::mpfr(det((nrow(x) - 1) * cov(x)), 256)^((nrow(x) - 1) / 2)
+  })) / Rmpfr::mpfr(det(T), 256)^((n - k) / 2) * (n - k)^((n - k) * p / 2) / Rmpfr::mpfr(Reduce("*", lapply(data.split, function(x) {
     (nrow(x) - 1)^((nrow(x) - 1) * p / 2)
   })), 256)
 
@@ -502,10 +466,10 @@ MeanCov.test <- function(X, label, alpha = 0.05) {
 #' @param alpha The significance level. Default is 0.05.
 #' @import stats
 #' @import utils
-#' @references 高惠璇. 应用多元统计分析. 北京大学出版社, 2005: 92-94.
+#' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.92-94.
 #' @return A list containing the hypothesis, dimension, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 #' @export
-ind.test.multi <- function(data, subdim = FALSE, alpha = 0.05) {
+indTest.multi <- function(data, subdim = FALSE, alpha = 0.05) {
   n <- nrow(data)
   p <- ncol(data)
 

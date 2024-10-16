@@ -11,14 +11,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Imports: 
-    Rmpfr
+Depends: 
+    R (>= 4.0.0), Rmpfr (>= 0.9-5)
 Suggests:
     rmarkdown,
     knitr,
     yaml,
-    testthat (>= 3.0.0),
-    covr,
+    testthat,
     devtools,
     roxygen2,
     pkgbuild
