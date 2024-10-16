@@ -22,5 +22,5 @@ Suggests:
     roxygen2,
     pkgbuild
 References: 
-    高惠璇. 应用多元统计分析 [M]. 北京大学出版社, 2005: 76-80.
+    高惠璇. 应用多元统计分析 [M]. 北京大学出版社, 2005.
 Config/testthat/edition: 3
