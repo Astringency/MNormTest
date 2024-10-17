@@ -81,7 +81,7 @@
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
-<dd><p>A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal. If you want to use the likelihood ratio test, please use the function "mean.test.multi".</p></dd>
+<dd><p>A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.</p></dd>
 
 
 <dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
@@ -90,7 +90,7 @@
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.</p>
+    <p>If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.</p>
     </div>
     <div id="references">
     <h2>References</h2>
