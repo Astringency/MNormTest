@@ -1,16 +1,16 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/LICENSE-text.html</loc></url>
-<url><loc>/LICENSE.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/reference/MeanCov.test.html</loc></url>
-<url><loc>/reference/covTest.multi.html</loc></url>
-<url><loc>/reference/covTest.single.html</loc></url>
-<url><loc>/reference/indTest.multi.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/meanTest.multi.html</loc></url>
-<url><loc>/reference/meanTest.single.html</loc></url>
-<url><loc>/reference/meanTest.two.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/404.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/LICENSE-text.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/LICENSE.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/authors.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/index.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/MeanCov.test.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/covTest.multi.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/covTest.single.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/indTest.multi.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/index.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/meanTest.multi.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/meanTest.single.html</loc></url>
+<url><loc>https://astringency.github.io/MNormTest/reference/meanTest.two.html</loc></url>
 </urlset>
 
