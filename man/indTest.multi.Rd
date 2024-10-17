@@ -24,3 +24,6 @@ Independence tests for multivariate normal populations.
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.92-94.
 }
+\author{
+Xifeng Zhang
+}

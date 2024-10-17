@@ -31,3 +31,6 @@ meanTest.multi(chart, species, full = TRUE)
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.
 }
+\author{
+Xifeng Zhang
+}

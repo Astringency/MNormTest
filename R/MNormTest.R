@@ -94,6 +94,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALS
 
 #' @title Test of Two Mean Vectors
 #' @description Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
+#' @author Xifeng Zhang
 #' @param data1 A matrix or data frame of group 1.
 #' @param data2 A matrix or data frame of group 2.
 #' @param alpha The significance level. Default is 0.05.
@@ -263,6 +264,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 
 #' @title Test of Multiple Mean Vectors
 #' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realised value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realised value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
+#' @author Xifeng Zhang
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
@@ -356,6 +358,7 @@ meanTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 
 #' @title Test of Single Covariance Matrix
 #' @description Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
+#' @author Xifeng Zhang
 #' @param data The data matrix which is a matrix or data frame.
 #' @param Sigma0 The covariance matrix when the null hypothesis is true.
 #' @param ball A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).
@@ -462,6 +465,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
 
 #' @title Test of Multiple Covariance Matrix
 #' @description Hypothesis testing of multiple multivariate normal population covariance matrices when the population mean is unknown.
+#' @author Xifeng Zhang
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
@@ -568,6 +572,7 @@ covTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 
 #' @title Test of Mean and Covariance Matrix at the Same Time
 #' @description Hypothesis testing of multiple multivariate normal population mean vectors and covariance matrices (Test simultaneously).
+#' @author Xifeng Zhang
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
@@ -665,6 +670,7 @@ meancov.Test <- function(X, label, alpha = 0.05, full = FALSE) {
 
 #' @title Test of Independence
 #' @description Independence tests for multivariate normal populations.
+#' @author Xifeng Zhang
 #' @param data The data matrix which is a matrix or data frame.
 #' @param subdim The dimensions of submatrices. The default is FALSE, which means the independence of all components of the random vector will be tested.
 #' @param alpha The significance level. Default is 0.05.

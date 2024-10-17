@@ -34,3 +34,6 @@ covTest.single(X, diag(1, 4), full = TRUE)
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.
 }
+\author{
+Xifeng Zhang
+}

@@ -31,3 +31,6 @@ meancov.Test(chart, species, full = TRUE)
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.90-91.
 }
+\author{
+Xifeng Zhang
+}

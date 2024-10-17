@@ -31,3 +31,6 @@ covTest.multi(chart, species, full = TRUE)
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.
 }
+\author{
+Xifeng Zhang
+}

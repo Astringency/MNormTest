@@ -44,3 +44,6 @@ meanTest.two(X, Y, equal = FALSE, method = "Transformed")
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
 }
+\author{
+Xifeng Zhang
+}
