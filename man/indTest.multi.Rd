@@ -4,7 +4,7 @@
 \alias{indTest.multi}
 \title{Test of Independence}
 \usage{
-indTest.multi(data, subdim = FALSE, alpha = 0.05)
+indTest.multi(data, subdim = FALSE, alpha = 0.05, full = FALSE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -12,6 +12,8 @@ indTest.multi(data, subdim = FALSE, alpha = 0.05)
 \item{subdim}{The dimensions of submatrices. The default is FALSE, which means the independence of all components of the random vector will be tested.}
 
 \item{alpha}{The significance level. Default is 0.05.}
+
+\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
 A list containing the hypothesis, dimension, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, df of Chi2, p value, critical value and conclusion.

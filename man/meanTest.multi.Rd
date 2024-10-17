@@ -4,7 +4,7 @@
 \alias{meanTest.multi}
 \title{Test of Multiple Mean Vectors}
 \usage{
-meanTest.multi(X, label, alpha = 0.05)
+meanTest.multi(X, label, alpha = 0.05, full = FALSE)
 }
 \arguments{
 \item{X}{The data matrix which is a matrix or data frame.}
@@ -12,12 +12,21 @@ meanTest.multi(X, label, alpha = 0.05)
 \item{label}{A vector of group labels.}
 
 \item{alpha}{The significance level. Default is 0.05.}
+
+\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
 A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, df of Wilk's Lambda, df of Bartlett's Chi2, df of Rao's F, p value, approximate conclusion.
 }
 \description{
 Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance).
+}
+\examples{
+data(iris)
+chart <- iris[, 1:4]
+species <- iris[, 5]
+meanTest.multi(chart, species)
+meanTest.multi(chart, species, full = TRUE)
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.

@@ -4,7 +4,7 @@
 \alias{covTest.multi}
 \title{Test of Multiple Covariance Matrix}
 \usage{
-covTest.multi(X, label, alpha = 0.05)
+covTest.multi(X, label, alpha = 0.05, full = FALSE)
 }
 \arguments{
 \item{X}{The data matrix which is a matrix or data frame.}
@@ -12,12 +12,21 @@ covTest.multi(X, label, alpha = 0.05)
 \item{label}{A vector of group labels.}
 
 \item{alpha}{The significance level. Default is 0.05.}
+
+\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
 A list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
 }
 \description{
 Tests of multiple multivariate normal overall covariance arrays when the overall mean is unknown.
+}
+\examples{
+data(iris)
+chart <- iris[, 1:4]
+species <- iris[, 5]
+covTest.multi(chart, species)
+covTest.multi(chart, species, full = TRUE)
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.

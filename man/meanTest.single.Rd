@@ -4,7 +4,7 @@
 \alias{meanTest.single}
 \title{Test of Single Mean Vector}
 \usage{
-meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05)
+meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALSE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -14,12 +14,22 @@ meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05)
 \item{Sigma0}{(optional) The population covariance matrix. Default is FALSE which means the covariance matrix is unknown.}
 
 \item{alpha}{The significance level. Default is 0.05.}
+
+\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
 A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 }
 \description{
 Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown.
+}
+\examples{
+data(iris)
+X <- iris[, 1:4]
+mu0 <- c(5.8, 3.0, 4.3, 1.3)
+meanTest.single(X, mu0)
+meanTest.single(X, mu0, Sigma0 = diag(1, 4))
+meanTest.single(X, mu0, full = TRUE)
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.

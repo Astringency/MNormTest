@@ -9,7 +9,8 @@ meanTest.two(
   data2,
   alpha = 0.05,
   equal = TRUE,
-  method = c("None", "Coupled", "Transformed")
+  method = c("None", "Coupled", "Transformed"),
+  full = FALSE
 )
 }
 \arguments{
@@ -22,12 +23,23 @@ meanTest.two(
 \item{equal}{A boolean value. Default is TRUE. If TRUE, the covariance matrix is equal. If FALSE, the covariance matrix is not equal.}
 
 \item{method}{A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal. If you want to use the likelihood ratio test, please use the function "mean.test.multi".}
+
+\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
 A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
 }
 \description{
 Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
+}
+\examples{
+data(iris)
+X <- iris[1:50, 1:4]
+Y <- iris[51:100, 1:4]
+meanTest.two(X, Y)
+meanTest.two(X, Y, full = TRUE)
+meanTest.two(X, Y, equal = FALSE, method = "Coupled")
+meanTest.two(X, Y, equal = FALSE, method = "Transformed")
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
