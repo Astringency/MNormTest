@@ -261,4 +261,4 @@ The calculated $\chi^2$ statistic is 140.94,
 $p = 0.0000 < 0.05 = \alpha$ ($p$ is very small, and it is directly
 calculated as 0 in `R`), so we reject the null hypothesis and conclude
 that the covariance matrices of the three categories of iris are not
-equal at the significance level \$= 0.05.
+equal at the significance level $\alpha = 0.05$.

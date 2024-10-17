@@ -202,4 +202,4 @@ covTest.multi(chart, species, full = TRUE)
 
 计算得$\chi^2$统计量为140.94，$p = 0.0000 < 0.05 = \alpha$（$p$值很小，在`R`的运算中直接算成0了），故拒绝原假设，认为在显著性水平$\alpha = 0.05$下，三种鸢尾花的协方差矩阵不相等.
 
-The calculated $\chi^2$ statistic is 140.94, $p = 0.0000 < 0.05 = \alpha$ ($p$ is very small, and it is directly calculated as 0 in `R`), so we reject the null hypothesis and conclude that the covariance matrices of the three categories of iris are not equal at the significance level $\alpha = 0.05.
+The calculated $\chi^2$ statistic is 140.94, $p = 0.0000 < 0.05 = \alpha$ ($p$ is very small, and it is directly calculated as 0 in `R`), so we reject the null hypothesis and conclude that the covariance matrices of the three categories of iris are not equal at the significance level $\alpha = 0.05$.
