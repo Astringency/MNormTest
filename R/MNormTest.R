@@ -9,7 +9,7 @@
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.
-#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -48,7 +48,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALS
       return(list(
         "Hypothesis" = paste("H0: mu = (", toString(mu0), ") when Sigma is unknown"),
         "Sample Mean" = X.bar,
-        "Sample Diviation" = A,
+        "Sample deviation" = A,
         "Statistics" = statistics,
         "Degree of freedom" = dof,
         "Conclusion" = reject
@@ -104,7 +104,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALS
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
-#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -151,8 +151,8 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
         "Hypothesis" = "H0: mu1 = mu2, with unknown but equal covariance matrix",
         "Sample Mean X" = X.bar,
         "Sample Mean Y" = Y.bar,
-        "Sample Diviation A1" = A1,
-        "Sample Diviation A2" = A2,
+        "Sample deviation A1" = A1,
+        "Sample deviation A2" = A2,
         "Statistics" = statistics,
         "Degree of freedom" = dof,
         "Conclusion" = Reject
@@ -194,7 +194,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
           "Hypothesis" = paste("H0: mu1 = mu2, with unknown but different covariance matrix"),
           "Method" = "Construct a new sample by subtracting two samples",
           "Sample Mean" = X.bar,
-          "Sample Diviation" = A,
+          "Sample deviation" = A,
           "Statistics" = statistics,
           "Degree of freedom" = dof,
           "Conclusion" = Reject
@@ -246,7 +246,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
           "Hypothesis" = paste("H0: mu1 = mu2, with unknown but different covariance matrix"),
           "Method" = "Transformed method",
           "Sample Mean" = Z.bar,
-          "Sample Diviation" = A,
+          "Sample deviation" = A,
           "Statistics" = statistics,
           "Degree of freedom" = dof,
           "Conclusion" = Reject
@@ -368,7 +368,7 @@ meanTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 #' @import utils
 #' @importFrom Rmpfr mpfr
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.
-#' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of Chi2, p value, critical value and conclusion.
+#' @return A list containing the hypothesis, sample mean, sample deviation, statistics, df of Chi2, p value, critical value and conclusion.
 #' @export
 #'
 #' @examples
@@ -408,7 +408,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
       return(list(
         "Hypothesis" = "H0: Sigma = Sigma0",
         "Sample Mean" = X.bar,
-        "Sample Diviation" = A,
+        "Sample deviation" = A,
         "Statistics" = statistics,
         "Degree of freedom" = paste("Chi2(", df.chi2, ")"),
         "Conclusion" = reject
@@ -447,7 +447,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
       return(list(
         "Hypothesis" = ifelse(all.equal(Sigma0, diag(1, p)), "Mauchly's test of sphericity. H0: Sigma = sigma2 * Ip", "H0: Sigma = sigma2 * Sigma0 (sigma2 unknown)"),
         "Sample Mean" = X.bar,
-        "Sample Diviation" = A,
+        "Sample deviation" = A,
         "sigma.hat" = sigma.hat,
         "Statistics" = statistics,
         "Degree of freedom" = paste("Chi2(", df.chi2, ")"),
@@ -678,7 +678,7 @@ meancov.Test <- function(X, label, alpha = 0.05, full = FALSE) {
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.92-94.
-#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, sample deviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.
 #' @export
 indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, full = FALSE) {
   n <- nrow(data)
@@ -726,8 +726,8 @@ indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, full = FALSE) {
       "Hypothesis" = "H0: The components are independent",
       "Dimension" = subdim,
       "Sample Mean" = X.bar,
-      "Sample Diviation" = A,
-      "Sample Diviation of Submatrix" = Aii,
+      "Sample deviation" = A,
+      "Sample deviation of Submatrix" = Aii,
       "Statistics" = statistics,
       "Modify Factor" = b,
       "Degree of freedom" = paste("Chi2(", df.chi2, ")"),
