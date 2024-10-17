@@ -98,7 +98,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALS
 #' @param data2 A matrix or data frame of group 2.
 #' @param alpha The significance level. Default is 0.05.
 #' @param equal A boolean value. Default is TRUE. If TRUE, the covariance matrix is equal. If FALSE, the covariance matrix is not equal.
-#' @param method A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal. If you want to use the likelihood ratio test, please use the function "mean.test.multi".
+#' @param method A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.
 #' @param full A boolean value. Default is FALSE. If TRUE, the full output will be displayed.
 #' @import stats
 #' @import utils
@@ -208,6 +208,17 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
     } else if (method == "Coupled" && n1 != n2) {
       print("The sample size of two groups should be equal when using Coupled method!")
     } else if (method == "Transformed") {
+      if (n1 > n2) {
+        temp <- data1
+        data1 <- data2
+        data2 <- temp
+        rm(temp)
+        n1 <- nrow(data1)
+        n2 <- nrow(data2)
+      } else {
+        n1 <- nrow(data1)
+        n2 <- nrow(data2)
+      }
       data.z <- data1 - sqrt(n1 / n2) * data2 + 1 / sqrt(n1 * n2) * apply(data2[1:n1, ], 2, sum) - 1 / n2 * apply(data2, 2, sum)
       Z.bar <- apply(data.z, 2, mean)
       A <- (n1 - 1) * cov(data.z)
