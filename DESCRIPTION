@@ -5,7 +5,8 @@ Authors@R:
     person("Xifeng", "Zhang", , "cnxifeng9819@163.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-8878-3753"))
 Maintainer: Xifeng Zhang <cnxifeng9819@163.com>
-URL: https://github.com/Astringency/MNormTest, https://astringency.github.io/MNormTest/
+URL: https://github.com/Astringency/MNormTest, https://astringency.github.io/MNormTest/, https://CRAN.R-project.org/package=MNormTest
+BugReports: https://github.com/swsoyee/rPackageTutorial/issues
 Description: A set of functions for hypothesis testing of the parameters of multivariate normal distributions, including the testing of a single mean vector, two mean vectors, multiple mean vectors, a single covariance matrix, multiple covariance matrices, a mean and a covariance matrix simultaneously, and the testing of independence of multivariate normal random vectors.
 License: MIT + file LICENSE
 Encoding: UTF-8
