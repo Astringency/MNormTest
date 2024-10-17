@@ -263,7 +263,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 }
 
 #' @title Test of Multiple Mean Vectors
-#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realized value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realized value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
+#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Bartlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realized value of Wilks Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilks Lambda according to the realized value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
 #' @author Xifeng Zhang
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
@@ -317,14 +317,14 @@ meanTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
   critical.value.F <- qf(1 - alpha, df.F[1], df.F[2])
 
   statistics <- data.frame(
-    "Statistics" = c("Wilk's Lambda", "Bartlett's Chi2", "Rao's F"),
+    "Statistics" = c("Wilks Lambda", "Bartlett's Chi2", "Rao's F"),
     "Value" = c(Lambda, Bartlett.chi2, Rao.F),
     "p value" = c(NA, p.value.chi2, p.value.F),
     "Critical Value" = c(NA, critical.value.chi2, critical.value.F)
   )
 
   dof <- data.frame(
-    "Statistics" = c("Wilk's Lambda", "Bartlett's Chi2", "Rao's F"),
+    "Statistics" = c("Wilks Lambda", "Bartlett's Chi2", "Rao's F"),
     "df" = c(paste("Lambda(", df.Lambda[1], ",", df.Lambda[2], ",", df.Lambda[3], ")"), paste("Chi2(", df.chi2, ")"), paste("F(", df.F[1], ",", df.F[2], ")"))
   )
 
@@ -361,14 +361,14 @@ meanTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 #' @author Xifeng Zhang
 #' @param data The data matrix which is a matrix or data frame.
 #' @param Sigma0 The covariance matrix when the null hypothesis is true.
-#' @param ball A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).
+#' @param ball A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly's ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).
 #' @param alpha The significance level. Default is 0.05.
 #' @param full A boolean value. Default is FALSE. If TRUE, the full output will be displayed.
 #' @import stats
 #' @import utils
 #' @importFrom Rmpfr mpfr
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.
-#' @return A list containing the hypothesis, sample mean, sample deviation, statistics, df of Chi2, p value, critical value and conclusion.
+#' @return A list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -474,7 +474,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
 #' @import utils
 #' @importFrom Rmpfr mpfr
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.
-#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples

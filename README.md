@@ -103,19 +103,19 @@ of the function.
 # or ??meanTest.two
 ```
 
-`meanTest.multi`被用于多个多元正态总体（总体协方差阵已知且相等）的均值向量的检验，采用Wilk’s
+`meanTest.multi`被用于多个多元正态总体（总体协方差阵已知且相等）的均值向量的检验，采用Wilks
 $\Lambda$统计量进行检验.
 但由于分布的特殊性，函数提供了两种近方法（Bartlett’s $\chi^2$和Rao’s
-$F$）的检验结果，并给出了Wilk’s
+$F$）的检验结果，并给出了Wilks
 $\Lambda$统计量的实现值及其自由度（需指定`full = TRUE`），若您想进行精确检验，则请根据统计量的实现值和自由度自行查找临界值.
 详细内容可参照函数的说明文档.
 
 `meanTest.multi` is used for testing the mean vectors of multiple
 multivariate normal populations (when the population covariance matrices
-are known and equal), using Wilk’s $\Lambda$ statistic for testing.
+are known and equal), using Wilks $\Lambda$ statistic for testing.
 However, due to the special distribution, the function provides the test
 results of two approximate methods (Bartlett’s $\chi^2$ and Rao’s $F$)
-and gives the observed value and degrees of freedom of Wilk’s $\Lambda$
+and gives the observed value and degrees of freedom of Wilks $\Lambda$
 statistic (need to specify `full = TRUE`), if you want to conduct an
 exact test, please find the critical value according to the observed
 value and degrees of freedom of the statistic. For more details, please
@@ -215,26 +215,26 @@ data(iris)
 head(iris)
 ```
 
-该数据集包含了150个样品，每个样品包含5个变量：4个特征（Sepal.Length,
-Sepal.Width, Petal.Length,
-Petal.Width）和1个类别（Species）.为了方便后面的检验，我们将二者分开:
+该数据集包含了150个样品，每个样品包含5个变量：4个特征（`Sepal.Length`,
+`Sepal.Width`, `Petal.Length`,
+`Petal.Width`）和1个类别（`Species`）.为了方便后面的检验，我们将二者分开:
 
 The dataset contains 150 samples, each sample contains 5 variables: 4
-features (Sepal.Length, Sepal.Width, Petal.Length, Petal.Width) and 1
-category (Species). For the convenience of the following tests, we
-separate them:
+features (`Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`)
+and 1 category (`Species`). For the convenience of the following tests,
+we separate them:
 
 ``` r
 chart <- iris[, 1:4]
 species <- iris[, 5]
 ```
 
-鸢尾花的类别有三种：setosa, versicolor, virginica.
+鸢尾花的类别有三种：`setosa`, `versicolor`, `virginica`.
 这便是我们的三个总体（这里假设三个总体均服从四元正态分布），我们现在想要检验它们的协方差矩阵是否相等.
 检验假设如下：
 
-There are three categories of iris: setosa, versicolor, virginica. These
-are our three populations (assuming that the three populations all
+There are three categories of iris: `setosa`, `versicolor`, `virginica`.
+These are our three populations (assuming that the three populations all
 follow a four-dimensional normal distribution), and we now want to test
 whether their covariance matrices are equal. The hypotheses are as
 follows:

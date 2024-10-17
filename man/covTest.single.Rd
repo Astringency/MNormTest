@@ -11,14 +11,14 @@ covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALSE)
 
 \item{Sigma0}{The covariance matrix when the null hypothesis is true.}
 
-\item{ball}{A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).}
+\item{ball}{A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly's ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).}
 
 \item{alpha}{The significance level. Default is 0.05.}
 
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample mean, sample deviation, statistics, df of Chi2, p value, critical value and conclusion.
+A list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 }
 \description{
 Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
