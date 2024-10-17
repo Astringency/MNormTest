@@ -10,6 +10,15 @@
 coverage](https://codecov.io/gh/Astringency/MNormTest/graph/badge.svg)](https://app.codecov.io/gh/Astringency/MNormTest)
 <!-- badges: end -->
 
+## Code of Conduct
+
+Please note that the MNormTest project is released with a [Contributor
+Code of
+Conduct](https://astringency.github.io/MNormTest/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## 介绍 (Introduction)
+
 MNormTest包的目标是提供一套用于多元正态分布参数假设检验的函数，包括检验单个均值向量、两个均值向量、多个均值向量、单个协方差矩阵、多个协方差矩阵、同时检验均值和协方差矩阵，以及检验多元正态随机向量的独立性.
 
 The objective of MNormTest is to provide a set of functions for
