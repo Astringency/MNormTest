@@ -263,7 +263,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 }
 
 #' @title Test of Multiple Mean Vectors
-#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realised value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realised value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
+#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realized value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realized value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
 #' @author Xifeng Zhang
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
