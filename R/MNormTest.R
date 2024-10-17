@@ -9,7 +9,7 @@
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.
-#' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -103,7 +103,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALS
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
-#' @return A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -251,7 +251,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 }
 
 #' @title Test of Multiple Mean Vectors
-#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance).
+#' @description Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realised value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realised value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
@@ -259,7 +259,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.
-#' @return A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, df of Wilk's Lambda, df of Bartlett's Chi2, df of Rao's F, p value, approximate conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -459,7 +459,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
 #' @import utils
 #' @importFrom Rmpfr mpfr
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.
-#' @return A list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -565,7 +565,7 @@ covTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 #' @import utils
 #' @importFrom Rmpfr mpfr
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.90-91.
-#' @return A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.
 #' @export
 #'
 #' @examples
@@ -661,7 +661,7 @@ meancov.Test <- function(X, label, alpha = 0.05, full = FALSE) {
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.92-94.
-#' @return A list containing the hypothesis, dimension, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
+#' @return If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.
 #' @export
 indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, full = FALSE) {
   n <- nrow(data)

@@ -20,14 +20,30 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/Astringency/MNormTest/graph/badge.svg)](https://app.codecov.io/gh/Astringency/MNormTest)
 <!-- badges: end -->
 
-The goal of MNormTest is to ...
+MNormTest包的目标是提供一套用于多元正态分布参数假设检验的函数，包括检验单个均值向量、两个均值向量、多个均值向量、单个协方差矩阵、多个协方差矩阵、同时检验均值和协方差矩阵，以及检验多元正态随机向量的独立性.
 
-## Installation
+The objective of MNormTest is to provide a set of functions for hypothesis testing of the parameters of multivariate normal distributions, including the testing of a single mean vector, two mean vectors, multiple mean vectors, a single covariance matrix, multiple covariance matrices, a mean and a covariance matrix simultaneously, and the testing of independence of multivariate normal random vectors.
 
-You can install the development version of MNormTest from [GitHub](https://github.com/) with:
+## 下载 (Installation)
+
+- CRAN:
+
+首先，您可以从[CRAN](https://CRAN.R-project.org)安装MNormTest的发布版本:
+
+Firstly, you can install the released version of MNormTest from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-# install.packages("pak")
+install.packages("MNormTest")
+```
+
+- GitHub:
+
+其次，您可以从[GitHub](https://github.com/)安装MNormTest的开发版本:
+
+What's more, You can install the development version of MNormTest from [GitHub](https://github.com/) with:
+
+``` r
+install.packages("pak")
 pak::pak("Astringency/MNormTest")
 ```
 
