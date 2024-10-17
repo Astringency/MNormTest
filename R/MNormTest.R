@@ -461,7 +461,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALS
 }
 
 #' @title Test of Multiple Covariance Matrix
-#' @description Tests of multiple multivariate normal overall covariance arrays when the overall mean is unknown.
+#' @description Hypothesis testing of multiple multivariate normal population covariance matrices when the population mean is unknown.
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
@@ -567,7 +567,7 @@ covTest.multi <- function(X, label, alpha = 0.05, full = FALSE) {
 }
 
 #' @title Test of Mean and Covariance Matrix at the Same Time
-#' @description Simultaneous testing of multiple multivariate normal overall mean vectors and covariance matrices.
+#' @description Hypothesis testing of multiple multivariate normal population mean vectors and covariance matrices (Test simultaneously).
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.

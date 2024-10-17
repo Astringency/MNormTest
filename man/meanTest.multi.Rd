@@ -16,10 +16,10 @@ meanTest.multi(X, label, alpha = 0.05, full = FALSE)
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, df of Wilk's Lambda, df of Bartlett's Chi2, df of Rao's F, p value, approximate conclusion.
+If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 }
 \description{
-Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance).
+Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Battlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realised value of Wilk's Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilk's Lambda according to the realised value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
 }
 \examples{
 data(iris)

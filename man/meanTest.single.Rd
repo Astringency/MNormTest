@@ -18,7 +18,7 @@ meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALSE)
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample mean, sample diviation, statistics, df of T2, df of F, p value, critical value and conclusion.
+If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 }
 \description{
 Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown.

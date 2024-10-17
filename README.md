@@ -56,11 +56,12 @@ library(MNormTest)
 
 ## 使用 (Usage)
 
-MNormTest共提供了7个函数：`meanTest.single`，`meanTest.two`，`meanTest.multi`，`covTest.single`，`covTest.multi`，`meancov.Test`，`ind.Test.multi`.
+MNormTest提供了7个函数：
 
-MNormTest provides 7 functions: `meanTest.single`, `meanTest.two`,
-`meanTest.multi`, `covTest.single`, `covTest.multi`, `meancov.Test`,
-`ind.Test.multi`.
+MNormTest provides 7 functions:
+
+`meanTest.single`, `meanTest.two`, `meanTest.multi`, `covTest.single`,
+`covTest.multi`, `meancov.Test`, `ind.Test.multi`.
 
 ### 均值向量检验 (Mean Vector Test)
 
@@ -95,7 +96,7 @@ of the function.
 
 `meanTest.multi`被用于多个多元正态总体（总体协方差阵已知且相等）的均值向量的检验，采用Wilk’s
 $\Lambda$统计量进行检验.
-但由于分布的特殊性，函数提供了两种近方法（Bartlett’s $\Chi^2$和Rao’s
+但由于分布的特殊性，函数提供了两种近方法（Bartlett’s $\chi^2$和Rao’s
 $F$）的检验结果，并给出了Wilk’s
 $\Lambda$统计量的实现值及其自由度（需指定`full = TRUE`），若您想进行精确检验，则请根据统计量的实现值和自由度自行查找临界值.
 详细内容可参照函数的说明文档.
@@ -104,7 +105,7 @@ $\Lambda$统计量的实现值及其自由度（需指定`full = TRUE`），若�
 multivariate normal populations (when the population covariance matrices
 are known and equal), using Wilk’s $\Lambda$ statistic for testing.
 However, due to the special distribution, the function provides the test
-results of two approximate methods (Bartlett’s $\Chi^2$ and Rao’s $F$)
+results of two approximate methods (Bartlett’s $\chi^2$ and Rao’s $F$)
 and gives the observed value and degrees of freedom of Wilk’s $\Lambda$
 statistic (need to specify `full = TRUE`), if you want to conduct an
 exact test, please find the critical value according to the observed
@@ -121,22 +122,20 @@ refer to the documentation of the function.
 `covTest.single`被用于单个多元正态总体（总体均值未知时）的协方差矩阵的检验.
 包含了2种情况：
 
-$$
-H_0: \Sigma = \Sigma_0, \quad H_1: \Sigma \neq \Sigma_0 (\Sigma_0 is known) \\
-H_0: \Sigma = \sigma^2 \Sigma_0, \quad H_1: \Sigma \neq \sigma^2 \Sigma_0 (\sigma^2 is unknown, \Sigma_0 is known)
-$$
-
-在第二种情况中，若$\Sigma_0 = I$，则检验通常称为球形检验.
-您可以通过设置不同的函数参数来选择检验的类型，详细内容可参照函数的说明文档.
-
 `covTest.single` is used for testing the covariance matrix of a single
 multivariate normal population (when the population mean is unknown).
 The function contains two cases:
 
 $$
-H_0: \Sigma = \Sigma_0, \quad H_1: \Sigma \neq \Sigma_0 (\Sigma_0 is known) \\
-H_0: \Sigma = \sigma^2 \Sigma_0, \quad H_1: \Sigma \neq \sigma^2 \Sigma_0 (\sigma^2 is unknown, \Sigma_0 is known)
+H_0: \Sigma = \Sigma_0, \quad H_1: \Sigma \neq \Sigma_0 (\Sigma_0 \text{ is known})
 $$
+
+$$
+H_0: \Sigma = \sigma^2 \Sigma_0, \quad H_1: \Sigma \neq \sigma^2 \Sigma_0 (\sigma^2 \text{ is unknown}, \Sigma_0 \text{ is known})
+$$
+
+在第二种情况中，若$\Sigma_0 = I$，则检验通常称为球形检验.
+您可以通过设置不同的函数参数来选择检验的类型，详细内容可参照函数的说明文档.
 
 In the second case, if $\Sigma_0 = I$, the test is usually called a
 sphericity test. You can choose the type of test by setting different
@@ -232,7 +231,7 @@ whether their covariance matrices are equal. The hypotheses are as
 follows:
 
 $$
-H_0: \Sigma_1 = \Sigma_2 = \Sigma_3, \quad H_1: \text{not all} \Sigma_i \text{ are equal}
+H_0: \Sigma_1 = \Sigma_2 = \Sigma_3, \quad H_1: \text{not all } \Sigma_i \text{ are equal}
 $$
 
 给定显著性水平$\alpha = 0.05$，我们可以使用`covTest.multi`进行检验：
@@ -256,9 +255,9 @@ If you need to output all the results, remember to set `full = TRUE`.
 covTest.multi(chart, species, full = TRUE)
 ```
 
-计算得$\Chi^2$统计量为140.94，$p = 0.0000 < 0.05 = \alpha$（$p$值很小，在`R`的运算中直接算成0了），故拒绝原假设，认为在显著性水平$\alpha = 0.05$下，三种鸢尾花的协方差矩阵不相等.
+计算得$\chi^2$统计量为140.94，$p = 0.0000 < 0.05 = \alpha$（$p$值很小，在`R`的运算中直接算成0了），故拒绝原假设，认为在显著性水平$\alpha = 0.05$下，三种鸢尾花的协方差矩阵不相等.
 
-The calculated $\Chi^2$ statistic is 140.94,
+The calculated $\chi^2$ statistic is 140.94,
 $p = 0.0000 < 0.05 = \alpha$ ($p$ is very small, and it is directly
 calculated as 0 in `R`), so we reject the null hypothesis and conclude
 that the covariance matrices of the three categories of iris are not

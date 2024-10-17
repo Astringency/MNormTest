@@ -16,10 +16,10 @@ meancov.Test(X, label, alpha = 0.05, full = FALSE)
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion.
+If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.
 }
 \description{
-Simultaneous testing of multiple multivariate normal overall mean vectors and covariance matrices.
+Hypothesis testing of multiple multivariate normal population mean vectors and covariance matrices (Test simultaneously).
 }
 \examples{
 data(iris)
