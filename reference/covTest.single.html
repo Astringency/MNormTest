@@ -50,7 +50,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">data</span>, <span class="va">Sigma0</span>, ball <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">data</span>, <span class="va">Sigma0</span>, ball <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, full <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,6 +72,10 @@
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
+
+<dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
+<dd><p>A boolean value. Default is FALSE. If TRUE, the full output will be displayed.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -82,6 +86,76 @@
     <p>Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: Sigma = Sigma0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Likelihood Ratio 3.829315e-223      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             Chi2  1.024268e+03       0       18.30704</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, ball <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Mauchly's test of sphericity. H0: Sigma = sigma2 * Ip"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Likelihood Ratio 8.616505e-321      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                W  5.400950e-05      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             Chi2  1.448568e+03       0       16.91898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>, ball <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Likelihood Ratio 8.616505e-321      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                W  5.400950e-05      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             Chi2  1.448568e+03       0       16.91898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: Sigma = Sigma0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Mean`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5.8433       3.0573       3.7580       1.1993 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Diviation`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Likelihood Ratio 3.829315e-223      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             Chi2  1.024268e+03       0       18.30704</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Degree of freedom`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Chi2( 10 )"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

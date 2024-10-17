@@ -50,7 +50,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, full <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,6 +68,10 @@
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
+
+<dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
+<dd><p>A boolean value. Default is FALSE. If TRUE, the full output will be displayed.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -78,6 +82,83 @@
     <p>Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.90-91.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k =  3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            Likelihood Ratio 1.767862e-155      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Likelihood Ratio (Modified) 2.200389e-152      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                           M  6.984086e+02      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        Chi2  6.809880e+02       0       41.33714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k =  3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Size`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     setosa versicolor  virginica </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         50         50         50 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Total Sample Mean`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5.843333     3.057333     3.758000     1.199333 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$versicolor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.936        2.770        4.260        1.326 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        6.588        2.974        5.552        2.026 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Total Sum of Squares`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      38.9562     13.6300      24.6246      5.6450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width       13.6300     16.9620       8.1208      4.8084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length      24.6246      8.1208      27.2226      6.2718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        5.6450      4.8084       6.2718      6.1566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    Statistics         Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            Likelihood Ratio 1.767862e-155      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Likelihood Ratio (Modified) 2.200389e-152      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                           M  6.984086e+02      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        Chi2  6.809880e+02       0       41.33714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Modify Factor`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02494331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Degree of freedom`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Chi2( 28 )"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

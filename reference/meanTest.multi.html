@@ -50,7 +50,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meanTest.multi</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meanTest.multi</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, full <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,6 +68,10 @@
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
+
+<dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
+<dd><p>A boolean value. Default is FALSE. If TRUE, the full output will be displayed.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -78,6 +82,113 @@
     <p>Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">meanTest.multi</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2 = ... = muk, k =  3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Statistics        Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Wilk's Lambda 2.343863e-02      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> df2 Bartlett's Chi2 5.461153e+02       0      15.507313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> df1         Rao's F 1.274530e+04       0       1.970619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Approx Reject`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bartlett      Rao </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Reject" "Reject" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">meanTest.multi</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2 = ... = muk, k =  3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Size`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     setosa versicolor  virginica </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         50         50         50 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Total Sample Mean`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5.843333     3.057333     3.758000     1.199333 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$versicolor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.936        2.770        4.260        1.326 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Group Mean`$virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        6.588        2.974        5.552        2.026 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Total Sum of Squares`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares (Total)`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      38.9562     13.6300      24.6246      5.6450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width       13.6300     16.9620       8.1208      4.8084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length      24.6246      8.1208      27.2226      6.2718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        5.6450      4.8084       6.2718      6.1566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares`$setosa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length       6.0882      4.8616       0.8014      0.5062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.8616      7.0408       0.5732      0.4556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       0.8014      0.5732       1.4778      0.2974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        0.5062      0.4556       0.2974      0.5442</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares`$versicolor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      13.0552       4.174        8.962      2.7332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.1740       4.825        4.050      2.0190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       8.9620       4.050       10.820      3.5820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.7332       2.019        3.582      1.9162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Within Sum of Squares`$virginica</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      19.8128      4.5944      14.8612      2.4056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.5944      5.0962       3.4976      2.3338</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length      14.8612      3.4976      14.9248      2.3924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.4056      2.3338       2.3924      3.6962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Between Sum of Squares`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length     63.21213   -19.95267     165.2484    71.27933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -19.95267    11.34493     -57.2396   -22.93267</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length    165.24840   -57.23960     437.1028   186.77400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width      71.27933   -22.93267     186.7740    80.41333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Statistics        Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Wilk's Lambda 2.343863e-02      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> df2 Bartlett's Chi2 5.461153e+02       0      15.507313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> df1         Rao's F 1.274530e+04       0       1.970619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Degree of freedom`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Statistics                    df</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Wilk's Lambda Lambda( 4 , 147 , 2 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Bartlett's Chi2             Chi2( 8 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         Rao's F          F( 8 , 288 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Approx Reject`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bartlett      Rao </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Reject" "Reject" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

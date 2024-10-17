@@ -55,7 +55,8 @@
 <span>  <span class="va">data2</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  equal <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"None"</span>, <span class="st">"Coupled"</span>, <span class="st">"Transformed"</span><span class="op">)</span></span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"None"</span>, <span class="st">"Coupled"</span>, <span class="st">"Transformed"</span><span class="op">)</span>,</span>
+<span>  full <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,6 +83,10 @@
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
 <dd><p>A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal. If you want to use the likelihood ratio test, please use the function "mean.test.multi".</p></dd>
 
+
+<dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
+<dd><p>A boolean value. Default is FALSE. If TRUE, the full output will be displayed.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -92,6 +97,92 @@
     <p>Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but equal covariance matrix"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics     Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 2580.8385      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  625.4583       0       2.467494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but equal covariance matrix"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Mean X`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Mean Y`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.936        2.770        4.260        1.326 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Diviation A1`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length       6.0882      4.8616       0.8014      0.5062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.8616      7.0408       0.5732      0.4556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       0.8014      0.5732       1.4778      0.2974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        0.5062      0.4556       0.2974      0.5442</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Diviation A2`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      13.0552       4.174        8.962      2.7332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.1740       4.825        4.050      2.0190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       8.9620       4.050       10.820      3.5820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.7332       2.019        3.582      1.9162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics     Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 2580.8385      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  625.4583       0       2.467494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Degree of freedom`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics         df</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 T2( 4 98 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  F( 4 95 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Coupled"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but different covariance matrix"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics    Value      p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 45.86582           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F 10.76443 3.051338e-06       2.574035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Transformed"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but different covariance matrix"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics    Value      p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 45.86582           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F 10.76443 3.051338e-06       2.574035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
