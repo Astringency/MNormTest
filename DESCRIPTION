@@ -1,5 +1,5 @@
 Package: MNormTest
-Title: A package for multivariate normal hypothesis testing
+Title: A Package for Multivariate Normal Hypothesis Testing
 Version: 1.1.0
 Authors@R: 
     person("Xifeng", "Zhang", , "cnxifeng9819@163.com", role = c("aut", "cre"),
@@ -23,6 +23,4 @@ Suggests:
     devtools,
     roxygen2,
     pkgbuild
-References: 
-    高惠璇. 应用多元统计分析 [M]. 北京大学出版社, 2005.
 Config/testthat/edition: 3
