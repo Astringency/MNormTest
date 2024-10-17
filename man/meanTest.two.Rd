@@ -27,7 +27,7 @@ meanTest.two(
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
 }
 \description{
 Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.

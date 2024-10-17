@@ -16,7 +16,7 @@ indTest.multi(data, subdim = FALSE, alpha = 0.05, full = FALSE)
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample diviation, sample diviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.
+If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, sample deviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.
 }
 \description{
 Independence tests for multivariate normal populations.

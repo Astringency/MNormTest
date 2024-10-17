@@ -18,7 +18,7 @@ covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALSE)
 \item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample mean, sample diviation, statistics, df of Chi2, p value, critical value and conclusion.
+A list containing the hypothesis, sample mean, sample deviation, statistics, df of Chi2, p value, critical value and conclusion.
 }
 \description{
 Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
