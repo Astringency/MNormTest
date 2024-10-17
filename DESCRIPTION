@@ -10,6 +10,7 @@ BugReports: https://github.com/Astringency/MNormTest/issues
 Description: A set of functions for hypothesis testing of the parameters of multivariate normal distributions, including the testing of a single mean vector, two mean vectors, multiple mean vectors, a single covariance matrix, multiple covariance matrices, a mean and a covariance matrix simultaneously, and the testing of independence of multivariate normal random vectors.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US, zh-CN
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
