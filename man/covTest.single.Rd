@@ -4,7 +4,7 @@
 \alias{covTest.single}
 \title{Test of Single Covariance Matrix}
 \usage{
-covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALSE)
+covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -15,7 +15,7 @@ covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, full = FALSE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
 }
 \value{
 A list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.

@@ -4,7 +4,7 @@
 \alias{meancov.Test}
 \title{Test of Mean and Covariance Matrix at the Same Time}
 \usage{
-meancov.Test(X, label, alpha = 0.05, full = FALSE)
+meancov.Test(X, label, alpha = 0.05, detail = TRUE)
 }
 \arguments{
 \item{X}{The data matrix which is a matrix or data frame.}
@@ -13,7 +13,7 @@ meancov.Test(X, label, alpha = 0.05, full = FALSE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
 }
 \value{
 If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.

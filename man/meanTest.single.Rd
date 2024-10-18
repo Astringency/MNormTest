@@ -4,32 +4,43 @@
 \alias{meanTest.single}
 \title{Test of Single Mean Vector}
 \usage{
-meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, full = FALSE)
+meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
 
 \item{mu0}{The mean vector when the null hypothesis is true.}
 
-\item{Sigma0}{(optional) The population covariance matrix. Default is FALSE which means the covariance matrix is unknown.}
+\item{Sigma0}{The population covariance matrix. Default is FALSE which means the covariance matrix is unknown.}
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+An object of class "testResult", which is a list with the following elements:
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMean}{The sample mean.}
+\item{SampA}{The sample deviation.}
+\item{Df}{The degree of freedom.}
 }
 \description{
-Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown.
+Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown. The null hypothesis is that "H0: mu = mu0".
 }
 \examples{
 data(iris)
 X <- iris[, 1:4]
 mu0 <- c(5.8, 3.0, 4.3, 1.3)
-meanTest.single(X, mu0)
-meanTest.single(X, mu0, Sigma0 = diag(1, 4))
-meanTest.single(X, mu0, full = TRUE)
+
+test1 <- meanTest.single(X, mu0)
+test2 <- meanTest.single(X, mu0, Sigma0 = diag(1, 4))
+test3 <- meanTest.single(X, mu0, detail = FALSE)
+
+get elements of the test result which you want
+test1$Stat
+test1$SampMean
+test1$SampA
+test1$Df
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.

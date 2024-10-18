@@ -4,7 +4,7 @@
 \alias{indTest.multi}
 \title{Test of Independence}
 \usage{
-indTest.multi(data, subdim = FALSE, alpha = 0.05, full = FALSE)
+indTest.multi(data, subdim = FALSE, alpha = 0.05, detail = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -13,7 +13,7 @@ indTest.multi(data, subdim = FALSE, alpha = 0.05, full = FALSE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
 }
 \value{
 If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, sample deviation of submatrix, statistics, modify factor, degree of freedom and conclusion will be returned.

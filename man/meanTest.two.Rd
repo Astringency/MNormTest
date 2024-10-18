@@ -10,7 +10,7 @@ meanTest.two(
   alpha = 0.05,
   equal = TRUE,
   method = c("None", "Coupled", "Transformed"),
-  full = FALSE
+  detail = TRUE
 )
 }
 \arguments{
@@ -24,10 +24,29 @@ meanTest.two(
 
 \item{method}{A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.}
 
-\item{full}{A boolean value. Default is FALSE. If TRUE, the full output will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+A object of class "testResult", which is a list with the following elements:
+Return when the param equal is TRUE.
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMean1}{The sample mean of group 1.}
+\item{SampMean2}{The sample mean of group 2.}
+\item{SampA1}{The sample deviation of group 1.}
+\item{SampA2}{The sample deviation of group 2.}
+\item{Df}{The degree of freedom.}
+Return when the param equal is FALSE and method is "Coupled".
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMeanC}{The sample mean of coupled data.}
+\item{SampAC}{The sample deviation of coupled data.}
+\item{Df}{The degree of freedom.}
+\item{dataC}{The coupled data.}
+Return when the param equal is FALSE and method is "Transformed".
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMeanT}{The sample mean of transformed data.}
+\item{SampAT}{The sample deviation of transformed data.}
+\item{Df}{The degree of freedom.}
+\item{dataT}{The transformed data. Return when the param equal is FALSE and method is "Transformed".}
 }
 \description{
 Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
@@ -36,10 +55,16 @@ Hypothesis testing for equality of the mean vectors of two multivariate normal p
 data(iris)
 X <- iris[1:50, 1:4]
 Y <- iris[51:100, 1:4]
-meanTest.two(X, Y)
-meanTest.two(X, Y, full = TRUE)
-meanTest.two(X, Y, equal = FALSE, method = "Coupled")
-meanTest.two(X, Y, equal = FALSE, method = "Transformed")
+
+test1 <- meanTest.two(X, Y)
+test2 <- meanTest.two(X, Y, full = TRUE)
+test3 <- meanTest.two(X, Y, equal = FALSE, method = "Coupled")
+test4 <- meanTest.two(X, Y, equal = FALSE, method = "Transformed")
+
+test1$Stat
+test1$SampMean1
+test3$SampMeanC
+test4$dataT
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
