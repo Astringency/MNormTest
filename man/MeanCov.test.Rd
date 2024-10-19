@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{meancov.Test}
 \alias{meancov.Test}
-\title{Test of Mean and Covariance Matrix at the Same Time}
+\title{Mean and Covariance Matrix Hypothesis Testing (Simultaneously)}
 \usage{
 meancov.Test(X, label, alpha = 0.05, detail = TRUE)
 }
@@ -13,20 +13,34 @@ meancov.Test(X, label, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, statistics, modify factor, df of Chi2, p value, critical value and conclusion will be returned.
+An object of class "testResult", which is a list with the following elements:
+\item{Conclusion}{The conclusion of the test.}
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMeanT}{The sample mean.}
+\item{SampMeanWithin}{The sample mean of each group.}
+\item{SdTotal}{The total sample deviation.}
+\item{SdWithin}{The sample deviation of each group.}
+\item{SdWithinT}{The sample deviation within group.}
+\item{Df}{The degree of freedom.}
+\item{sampleSize}{The sample size of each group.}
+\item{d}{The Modified factor of the statistic.}
 }
 \description{
-Hypothesis testing of multiple multivariate normal population mean vectors and covariance matrices (Test simultaneously).
+Test whether the mean vectors and covariance matrices of multiple multivariate normal populations are all equal simultaneously. Suppose we have k populations, the null hypothesis is "H0: mu1 = mu2 = ... = muk and Sigma1 = Sigma2 = ... = Sigmak".
 }
 \examples{
 data(iris)
 chart <- iris[, 1:4]
 species <- iris[, 5]
-meancov.Test(chart, species)
-meancov.Test(chart, species, full = TRUE)
+# carry out the test
+test1 <- meancov.Test(chart, species)
+test2 <- meancov.Test(chart, species, detail = FALSE)
+# get the elements
+test1$Stat
+test1$SampMeanT
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.90-91.

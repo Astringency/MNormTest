@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{meanTest.multi}
 \alias{meanTest.multi}
-\title{Test of Multiple Mean Vectors}
+\title{Multiple Mean Vectors Hypothesis Testing}
 \usage{
 meanTest.multi(X, label, alpha = 0.05, detail = TRUE)
 }
@@ -13,20 +13,35 @@ meanTest.multi(X, label, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, total sum of squares, within sum of squares, between sum of squares, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+An object of class "testResult", which is a list with the following elements:
+\item{Conclusion}{The conclusion of the test.}
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMeanT}{The sample mean.}
+\item{SampMeanWithin}{The sample mean of each group.}
+\item{SdTotal}{The total sample deviation.}
+\item{SdBetween}{The sample deviation between group.}
+\item{SdWithin}{The sample deviation of each group.}
+\item{SdWithinT}{The sample deviation within group.}
+\item{Df}{The degree of freedom.}
+\item{sampleSize}{The sample size of each group.}
 }
 \description{
-Mean vector test for multiple multivariate normal totals when the covariance array is equal (multivariate analysis of variance). Note that this function provides two approximations (Bartlett's chi2 and Rao's F) to compute the p-value and the critical value, and gives the realized value of Wilks Lambda statistic and its degrees of freedom (set full=TRUE to see it), if you want to do an exact test, look up Wilks Lambda according to the realized value of the statistic and its degrees of freedom statistic quantile table to solve it manually.
+Test whether the mean vectors of multiple multivariate normal populations are all equal when the covariance matrices are equal. Suppose we have k populations, the null hypothesis is that "H0: mu1 = mu2 = ... = muk". There are two approximations (Bartlett's chi2 and Rao's F) to compute the p-value and the critical value. The realized value of the Wilks Lambda statistic and its degrees of freedom are also provided. If you want to perform an exact test, consult the Wilks Lambda statistic quantile table yourself, depending on the realized value of the statistic and its degrees of freedom.
 }
 \examples{
 data(iris)
 chart <- iris[, 1:4]
 species <- iris[, 5]
-meanTest.multi(chart, species)
-meanTest.multi(chart, species, full = TRUE)
+# carry out the test
+test1 <- meanTest.multi(chart, species)
+test2 <- meanTest.multi(chart, species, detail = FALSE)
+# get the elements
+test1$Stat
+test1$SampMeanT
+test1$sampleSize
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.

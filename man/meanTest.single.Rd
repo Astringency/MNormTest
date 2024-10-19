@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{meanTest.single}
 \alias{meanTest.single}
-\title{Test of Single Mean Vector}
+\title{Single Mean Vector Hypothesis Testing}
 \usage{
 meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE)
 }
@@ -15,28 +15,31 @@ meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
 An object of class "testResult", which is a list with the following elements:
+\item{Conclusion}{The conclusion of the test.}
 \item{Stat}{A data frame containing the statistics, p value and critical value.}
 \item{SampMean}{The sample mean.}
 \item{SampA}{The sample deviation.}
 \item{Df}{The degree of freedom.}
 }
 \description{
-Hypothesis testing of the mean vector of a single multivariate normal population when the covariance matrix is known or unknown. The null hypothesis is that "H0: mu = mu0".
+Test whether the mean vector of a single
+multivariate normal population is equal to a certain value
+when the population covariance matrix is known or unknown.
+The null hypothesis is that "H0: mu = mu0".
 }
 \examples{
 data(iris)
 X <- iris[, 1:4]
 mu0 <- c(5.8, 3.0, 4.3, 1.3)
-
+# carry out the test
 test1 <- meanTest.single(X, mu0)
 test2 <- meanTest.single(X, mu0, Sigma0 = diag(1, 4))
 test3 <- meanTest.single(X, mu0, detail = FALSE)
-
-get elements of the test result which you want
+# get the elements
 test1$Stat
 test1$SampMean
 test1$SampA

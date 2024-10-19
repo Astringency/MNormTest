@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{covTest.multi}
 \alias{covTest.multi}
-\title{Test of Multiple Covariance Matrix}
+\title{Multiple Covariance Matrix Hypothesis Testing}
 \usage{
 covTest.multi(X, label, alpha = 0.05, detail = TRUE)
 }
@@ -13,20 +13,34 @@ covTest.multi(X, label, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
-If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample size, total sample mean, within group mean, within group sample covariance, total sum of squares, within sum of squares, statistics, modify factor, degree of freedom, p value, critical value and conclusion will be returned.
+An object of class "testResult", which is a list with the following elements:
+\item{Conclusion}{The conclusion of the test.}
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMeanT}{The sample mean.}
+\item{SampMeanWithin}{The sample mean of each group.}
+\item{SdWithin}{The sample deviation of each group.}
+\item{SdWithinT}{The sample deviation within group.}
+\item{Df}{The degree of freedom.}
+\item{sampleSize}{The sample size of each group.}
+\item{d}{The Modified factor of the statistic.}
 }
 \description{
-Hypothesis testing of multiple multivariate normal population covariance matrices when the population mean is unknown.
+Test whether the covariance matrices of multiple multivariate normal populations are all equal. Suppose we have k populations, the null hypothesis is "H0: Sigma1 = Sigma2 = ... = Sigmak".
 }
 \examples{
 data(iris)
 chart <- iris[, 1:4]
 species <- iris[, 5]
-covTest.multi(chart, species)
-covTest.multi(chart, species, full = TRUE)
+# carry out the test
+test1 <- covTest.multi(chart, species)
+test2 <- covTest.multi(chart, species, detail = FALSE)
+# get the elements
+test1$Stat
+test1$SampMeanT
+test1$sampleSize
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.88-89.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{meanTest.two}
 \alias{meanTest.two}
-\title{Test of Two Mean Vectors}
+\title{Two Mean Vectors Hypothesis Testing}
 \usage{
 meanTest.two(
   data1,
@@ -24,24 +24,28 @@ meanTest.two(
 
 \item{method}{A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
-A object of class "testResult", which is a list with the following elements:
+An object of class "testResult", which is a list with the following elements:
 Return when the param equal is TRUE.
+\item{Conclusion}{The conclusion of the test.}
 \item{Stat}{A data frame containing the statistics, p value and critical value.}
 \item{SampMean1}{The sample mean of group 1.}
 \item{SampMean2}{The sample mean of group 2.}
 \item{SampA1}{The sample deviation of group 1.}
 \item{SampA2}{The sample deviation of group 2.}
+\item{MixSampA}{The mixed sample deviation.}
 \item{Df}{The degree of freedom.}
 Return when the param equal is FALSE and method is "Coupled".
+\item{Conclusion}{The conclusion of the test.}
 \item{Stat}{A data frame containing the statistics, p value and critical value.}
 \item{SampMeanC}{The sample mean of coupled data.}
 \item{SampAC}{The sample deviation of coupled data.}
 \item{Df}{The degree of freedom.}
 \item{dataC}{The coupled data.}
 Return when the param equal is FALSE and method is "Transformed".
+\item{Conclusion}{The conclusion of the test.}
 \item{Stat}{A data frame containing the statistics, p value and critical value.}
 \item{SampMeanT}{The sample mean of transformed data.}
 \item{SampAT}{The sample deviation of transformed data.}
@@ -49,18 +53,18 @@ Return when the param equal is FALSE and method is "Transformed".
 \item{dataT}{The transformed data. Return when the param equal is FALSE and method is "Transformed".}
 }
 \description{
-Hypothesis testing for equality of the mean vectors of two multivariate normal populations when the covariance matrices are equal or unequal.
+Test whether the mean vectors of two multivariate normal populations are equal when the covariance matrices are equal or unequal. The null hypothesis is that "H0: mu1 = mu2".
 }
 \examples{
 data(iris)
 X <- iris[1:50, 1:4]
 Y <- iris[51:100, 1:4]
-
+# carry out the test
 test1 <- meanTest.two(X, Y)
-test2 <- meanTest.two(X, Y, full = TRUE)
+test2 <- meanTest.two(X, Y, detail = TRUE)
 test3 <- meanTest.two(X, Y, equal = FALSE, method = "Coupled")
 test4 <- meanTest.two(X, Y, equal = FALSE, method = "Transformed")
-
+# get the elements
 test1$Stat
 test1$SampMean1
 test3$SampMeanC

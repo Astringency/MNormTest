@@ -2,7 +2,7 @@
 % Please edit documentation in R/MNormTest.R
 \name{covTest.single}
 \alias{covTest.single}
-\title{Test of Single Covariance Matrix}
+\title{Single Covariance Matrix Hypothesis Testing}
 \usage{
 covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE)
 }
@@ -11,25 +11,43 @@ covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE)
 
 \item{Sigma0}{The covariance matrix when the null hypothesis is true.}
 
-\item{ball}{A boolean value. Default is FALSE. If FALSE, the covariance matrix is Sigma0 (known). If TRUE and the Sigma0 unit matrix, the Mauchly's ball test is performed. If TRUE but Sigma0 is not a unit matrix, the covariance array is tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown).}
+\item{ball}{A boolean value. Default is FALSE. If FALSE, test whether the covariance matrix is Sigma0 (known), which means the null hypothesis is "H0: Sigma = Sigma0". If TRUE and the Sigma0 is a unit matrix, the Mauchly's ball test will be performed. If TRUE but Sigma0 (known) is not a unit matrix, the covariance matrix will be tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown), which means the null hypothesis is "H0: Sigma = sigma^2 * Sigma0".}
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.}
+\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
 }
 \value{
-A list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.
+An object of class "testResult", which is a list with the following elements:
+Return when ball is FALSE.
+\item{Conclusion}{The conclusion of the test.}
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMean}{The sample mean.}
+\item{SampA}{The sample deviation.}
+\item{Df}{The degree of freedom.}
+Return when ball is TRUE
+\item{Conclusion}{The conclusion of the test.}
+\item{Stat}{A data frame containing the statistics, p value and critical value.}
+\item{SampMean}{The sample mean.}
+\item{SampA}{The sample deviation.}
+\item{sigma.hat}{The estimation of sigma^2.}
+\item{Df}{The degree of freedom.}
 }
 \description{
-Hypothesis testing of covariance matrices for a single normal population when the mean vector is unknown.
+Test whether the covariance matrix is equal to a certain value. The null hypothesis is "H0: Sigma = Sigma0" or "H0: Sigma = sigma^2 * Sigma0".
 }
 \examples{
 data(iris)
 X <- iris[, 1:4]
-covTest.single(X, diag(1, 4))
-covTest.single(X, diag(1, 4), ball = TRUE)
-covTest.single(X, diag(2, 4), ball = TRUE)
-covTest.single(X, diag(1, 4), full = TRUE)
+# carry out the test
+test1 <- covTest.single(X, diag(1, 4))
+test2 <- covTest.single(X, diag(1, 4), ball = TRUE)
+test3 <- covTest.single(X, diag(2, 4), ball = TRUE)
+test4 <- covTest.single(X, diag(1, 4), detail = FALSE)
+# get the elements
+test1$Stat
+test2$Df
+test3$sigma.hat
 }
 \references{
 Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.83-88.
