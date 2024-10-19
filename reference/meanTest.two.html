@@ -45,7 +45,7 @@
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  equal <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"None"</span>, <span class="st">"Coupled"</span>, <span class="st">"Transformed"</span><span class="op">)</span>,</span>
-<span>  full <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  detail <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -73,14 +73,65 @@
 <dd><p>A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.</p></dd>
 
 
-<dt id="arg-full">full<a class="anchor" aria-label="anchor" href="#arg-full"></a></dt>
-<dd><p>A boolean value. Default is FALSE. If TRUE, the full output will be displayed.</p></dd>
+<dt id="arg-detail">detail<a class="anchor" aria-label="anchor" href="#arg-detail"></a></dt>
+<dd><p>A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If full is FALSE, a list containing the hypothesis, statistics and conclusion will be returned. If full is TRUE, a list containing the hypothesis, sample mean, sample deviation, statistics, degree of freedom, p value, critical value and conclusion will be returned.</p>
-    </div>
+    <p>A object of class "testResult", which is a list with the following elements:
+Return when the param equal is TRUE.</p>
+<dl><dt>Stat</dt>
+<dd><p>A data frame containing the statistics, p value and critical value.</p></dd>
+
+<dt>SampMean1</dt>
+<dd><p>The sample mean of group 1.</p></dd>
+
+<dt>SampMean2</dt>
+<dd><p>The sample mean of group 2.</p></dd>
+
+<dt>SampA1</dt>
+<dd><p>The sample deviation of group 1.</p></dd>
+
+<dt>SampA2</dt>
+<dd><p>The sample deviation of group 2.</p></dd>
+
+<dt>Df</dt>
+<dd><p>The degree of freedom.</p></dd>
+
+</dl><p>Return when the param equal is FALSE and method is "Coupled".</p>
+<dl><dt>Stat</dt>
+<dd><p>A data frame containing the statistics, p value and critical value.</p></dd>
+
+<dt>SampMeanC</dt>
+<dd><p>The sample mean of coupled data.</p></dd>
+
+<dt>SampAC</dt>
+<dd><p>The sample deviation of coupled data.</p></dd>
+
+<dt>Df</dt>
+<dd><p>The degree of freedom.</p></dd>
+
+<dt>dataC</dt>
+<dd><p>The coupled data.</p></dd>
+
+</dl><p>Return when the param equal is FALSE and method is "Transformed".</p>
+<dl><dt>Stat</dt>
+<dd><p>A data frame containing the statistics, p value and critical value.</p></dd>
+
+<dt>SampMeanT</dt>
+<dd><p>The sample mean of transformed data.</p></dd>
+
+<dt>SampAT</dt>
+<dd><p>The sample deviation of transformed data.</p></dd>
+
+<dt>Df</dt>
+<dd><p>The degree of freedom.</p></dd>
+
+<dt>dataT</dt>
+<dd><p>The transformed data. Return when the param equal is FALSE and method is "Transformed".</p></dd>
+
+</dl></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.</p>
@@ -95,85 +146,54 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but equal covariance matrix"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics     Value p.value Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 2580.8385      NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  625.4583       0       2.467494</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but equal covariance matrix"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Mean X`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample Mean Y`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5.936        2.770        4.260        1.326 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample deviation A1`</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: mu1 = mu2 when Sigma1 = Sigma2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean of group 1 is: (5.0063.4281.4620.246)'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation of group 1 is:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length       6.0882      4.8616       0.8014      0.5062</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.8616      7.0408       0.5732      0.4556</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       0.8014      0.5732       1.4778      0.2974</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        0.5062      0.4556       0.2974      0.5442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Sample deviation A2`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean of group 2 is: (5.9362.774.261.326)'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation of group 2 is:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      13.0552       4.174        8.962      2.7332</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.1740       4.825        4.050      2.0190</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       8.9620       4.050       10.820      3.5820</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.7332       2.019        3.582      1.9162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics     Value p.value Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 2580.8385      NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  625.4583       0       2.467494</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Degree of freedom`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics         df</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 T2( 4 98 )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F  F( 4 95 )</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Coupled"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but different covariance matrix"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics    Value      p.value Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 45.86582           NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F 10.76443 3.051338e-06       2.574035</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Transformed"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Hypothesis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "H0: mu1 = mu2, with unknown but different covariance matrix"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Statistics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Statistics    Value      p.value Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hotelling T2 45.86582           NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            F 10.76443 3.051338e-06       2.574035</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $Conclusion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1]    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "Reject"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hotelling T2 2580.8385      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F             625.4583       0       2.467494</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom is:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      df</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hotelling T2 T2( 4 98 )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F             F( 4 95 )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
+<span class="r-in"><span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, full <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in meanTest.two(X, Y, full = TRUE):</span> unused argument (full = TRUE)</span>
+<span class="r-in"><span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Coupled"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in meanTest.two(X, Y, equal = FALSE, method = "Coupled"):</span> object 'X.bar' not found</span>
+<span class="r-in"><span><span class="va">test4</span> <span class="op">&lt;-</span> <span class="fu">meanTest.two</span><span class="op">(</span><span class="va">X</span>, <span class="va">Y</span>, equal <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"Transformed"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in meanTest.two(X, Y, equal = FALSE, method = "Transformed"):</span> object 'A' not found</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">test1</span><span class="op">$</span><span class="va">Stat</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  Value p.value Critical.Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hotelling T2 2580.8385      NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F             625.4583       0       2.467494</span>
+<span class="r-in"><span><span class="va">test1</span><span class="op">$</span><span class="va">SampMean1</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
+<span class="r-in"><span><span class="va">test3</span><span class="op">$</span><span class="va">SampMeanC</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'test3' not found</span>
+<span class="r-in"><span><span class="va">test4</span><span class="op">$</span><span class="va">dataT</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'test4' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
