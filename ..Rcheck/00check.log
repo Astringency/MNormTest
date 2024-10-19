@@ -1,0 +1,27 @@
+* using log directory 'F:/000 智者不入爱河/C05 R/RPackageDevelop/MNormTest/..Rcheck'
+* using R version 4.4.1 (2024-06-14 ucrt)
+* using platform: x86_64-w64-mingw32
+* R was compiled by
+    gcc.exe (GCC) 13.2.0
+    GNU Fortran (GCC) 13.2.0
+* running under: Windows 11 x64 (build 26100)
+* using session charset: UTF-8
+* checking for file './DESCRIPTION' ... OK
+* this is package 'MNormTest' version '1.1.0'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Package required but not available: 'Rmpfr'
+
+Packages suggested but not available:
+  'rmarkdown', 'knitr', 'testthat', 'devtools', 'roxygen2', 'pkgbuild',
+  'covr', 'usethis', 'DT'
+
+The suggested packages are required for a complete check.
+Checking can be attempted without them by setting the environment
+variable _R_CHECK_FORCE_SUGGESTS_ to a false value.
+
+See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+manual.
+* DONE
+Status: 1 ERROR
