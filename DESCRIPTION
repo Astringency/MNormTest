@@ -14,7 +14,7 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: 
-    R (>= 4.0.0), Rmpfr (>= 0.9-5)
+    R (>= 4.4.1), Rmpfr (>= 0.9-5)
 Suggests:
     rmarkdown,
     knitr,
@@ -22,5 +22,8 @@ Suggests:
     testthat (>= 3.0.0),
     devtools,
     roxygen2,
-    pkgbuild
+    pkgbuild,
+    covr,
+    usethis,
+    DT
 Config/testthat/edition: 3
