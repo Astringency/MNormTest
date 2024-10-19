@@ -1,0 +1,8 @@
+covTest.multi           Multiple Covariance Matrix Hypothesis Testing
+covTest.single          Single Covariance Matrix Hypothesis Testing
+indTest.multi           Multivariate Normal Independence Test
+meanTest.multi          Multiple Mean Vectors Hypothesis Testing
+meanTest.single         Single Mean Vector Hypothesis Testing
+meanTest.two            Two Mean Vectors Hypothesis Testing
+meancov.Test            Mean and Covariance Matrix Hypothesis Testing
+                        (Simultaneously)
