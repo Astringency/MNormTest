@@ -3,7 +3,8 @@ test_that("Two Mean Test works", {
   X <- iris[1:50, 1:4]
   Y <- iris[51:100, 1:4]
 
-  load("./Expect/meanTesttwoExpected.RData")
+  expect_path <- normalizePath("./Expect/meanTesttwoExpected.RData")
+  load(expect_path)
 
   test1 <- meanTest.two(X, Y)
   test2 <- meanTest.two(X, Y, equal = FALSE, method = "Coupled")

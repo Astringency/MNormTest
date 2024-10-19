@@ -2,7 +2,8 @@ test_that("independent Test works", {
   data(iris)
   chart <- iris[, 1:4]
 
-  load("./Expect/indTestmultiExpected.RData")
+  expect_path <- normalizePath("./Expect/indTestmultiExpected.RData")
+  load(expect_path)
 
   test1 <- indTest.multi(chart)
   test2 <- indTest.multi(chart, subdim = c(2, 1, 1))

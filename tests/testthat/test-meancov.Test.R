@@ -3,7 +3,8 @@ test_that("Mean Covariance Test works", {
   chart <- iris[, 1:4]
   species <- iris[, 5]
 
-  load("./Expect/meancovTestExpected.RData")
+  expect_path <- normalizePath("./Expect/meancovTestExpected.RData")
+  load(expect_path)
 
   test <- meancov.Test(chart, species)
 

@@ -3,7 +3,8 @@ test_that("Multi Mean Test works", {
   chart <- iris[, 1:4]
   species <- iris[, 5]
 
-  load("./Expect/meanTestmultiExpected.RData")
+  expect_path <- normalizePath("./Expect/meanTestmultiExpected.RData")
+  load(expect_path)
 
   test <- meanTest.multi(chart, species)
 

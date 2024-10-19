@@ -2,7 +2,9 @@ test_that("Single Covariance Test works", {
   data(iris)
   X <- iris[, 1:4]
 
-  load("./Expect/covTestsingleExpected.RData")
+  expect_path <- normalizePath("./Expect/covTestsingleExpected.RData")
+  load(expect_path)
+  
   test1 <- covTest.single(X, diag(1, 4))
   test2 <- covTest.single(X, diag(1, 4), ball = TRUE)
   test3 <- covTest.single(X, diag(2, 4), ball = TRUE)
