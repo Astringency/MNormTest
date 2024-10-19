@@ -26,10 +26,7 @@ An object of class "testResult", which is a list with the following elements:
 \item{Df}{The degree of freedom.}
 }
 \description{
-Test whether the mean vector of a single
-multivariate normal population is equal to a certain value
-when the population covariance matrix is known or unknown.
-The null hypothesis is that "H0: mu = mu0".
+Test whether the mean vector of a single multivariate normal population is equal to a certain value when the population covariance matrix is known or unknown. The null hypothesis is that "H0: mu = mu0".
 }
 \examples{
 data(iris)

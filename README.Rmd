@@ -26,9 +26,9 @@ Please note that the MNormTest project is released with a [Contributor Code of C
 
 ## 介绍 (Introduction)
 
-目标是提供一套用于多元正态分布参数假设检验的函数，包括检验单个均值向量、两个均值向量、多个均值向量、单个协方差矩阵、多个协方差矩阵、同时检验均值和协方差矩阵，以及检验多元正态随机向量的独立性.
+MNormTest的目标是提供一套用于多元正态分布参数假设检验的函数，包括检验单个均值向量、两个均值向量、多个均值向量、单个协方差矩阵、多个协方差矩阵、同时检验均值和协方差矩阵，以及检验多元正态随机向量的独立性. 方法原理参考了高惠璇（2005, ISBN:9787301078587）的《应用多元统计分析》.
 
-The objective of MNormTest is to provide a set of functions for hypothesis testing of the parameters of multivariate normal distributions, including the testing of a single mean vector, two mean vectors, multiple mean vectors, a single covariance matrix, multiple covariance matrices, a mean and a covariance matrix simultaneously, and the testing of independence of multivariate normal random vectors.
+The objective of MNormTest is to provide a set of functions for hypothesis testing of the parameters of multivariate normal distributions, including the testing of a single mean vector, two mean vectors, multiple mean vectors, a single covariance matrix, multiple covariance matrices, a mean and a covariance matrix simultaneously, and the testing of independence of multivariate normal random vectors. The methods are based on the book "Applied Multivariate Statistical Analysis" by Huixuan Gao (2005, ISBN:9787301078587).
 
 ## 下载 (Installation)
 
@@ -190,22 +190,31 @@ $$
 
 Given the significance level $\alpha = 0.05$, we can use `covTest.multi` for testing:
 
-若仅需要得到检验结论，可用如下代码：
-
-If you only need the test results, you can use the following code:
-
-``` r
-covTest.multi(chart, species)
+```r
+test.iris <- covTest.multi(chart, species)
 ```
 
-若需要输出全部结果，记得设置`full = TRUE`.
+如果您想输出更简洁的结果，可以设置 `detail = FALSE`:
 
-If you need to output all the results, remember to set `full = TRUE`.
+If you want a more concise result, you can set `detail = FALSE`:
 
-``` r
-covTest.multi(chart, species, full = TRUE)
+```r
+test.iris <- covTest.multi(chart, species, detail = FALSE)
 ```
 
 计算得$\chi^2$统计量为140.94，$p = 0.0000 < 0.05 = \alpha$（$p$值很小，在`R`的运算中直接算成0了），故拒绝原假设，认为在显著性水平$\alpha = 0.05$下，三种鸢尾花的协方差矩阵不相等.
 
 The calculated $\chi^2$ statistic is 140.94, $p = 0.0000 < 0.05 = \alpha$ ($p$ is very small, and it is directly calculated as 0 in `R`), so we reject the null hypothesis and conclude that the covariance matrices of the three categories of iris are not equal at the significance level $\alpha = 0.05$.
+
+此外，您可以从`test.iris`中提取感兴趣的信息，如检验统计量的实现值、$p$值、临界值和自由度:
+
+In addition, you can extract the information of interest from `test.iris`, such as the observed value of the test statistic, $p$ value, critical value, and degrees of freedom:
+
+```r
+test.iris$Stat
+test.iris$Df
+```
+
+更多示例可以参考每个函数的说明文档.
+
+More examples can be found in the documentation of each function.
