@@ -9,6 +9,6 @@ test_that("single mean test works", {
   test1 <- meanTest.single(X, mu0)
   test2 <- meanTest.single(X, mu0, Sigma0 = diag(1, 4))
 
-  expect_equal(identical(test1, output1), TRUE)
-  expect_equal(identical(test2, output2), TRUE)
+  expect_identical(test1, output1)
+  expect_identical(test2, output2)
 })

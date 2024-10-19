@@ -8,5 +8,5 @@ test_that("Multi Covariance Test works", {
 
   test <- covTest.multi(chart, species)
 
-  expect_equal(identical(test, output), TRUE)
+  expect_identical(test, output)
 })

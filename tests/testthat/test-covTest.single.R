@@ -9,7 +9,7 @@ test_that("Single Covariance Test works", {
   test2 <- covTest.single(X, diag(1, 4), ball = TRUE)
   test3 <- covTest.single(X, diag(2, 4), ball = TRUE)
 
-  expect_equal(identical(test1, output1), TRUE)
-  expect_equal(identical(test2, output2), TRUE)
-  expect_equal(identical(test3, output3), TRUE)
+  expect_identical(test1, output1)
+  expect_identical(test2, output2)
+  expect_identical(test3, output3)
 })
