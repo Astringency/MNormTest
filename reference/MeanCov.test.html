@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, detail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">meancov.Test</span><span class="op">(</span><span class="va">X</span>, <span class="va">label</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,8 +58,8 @@
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
 
-<dt id="arg-detail">detail<a class="anchor" aria-label="anchor" href="#arg-detail"></a></dt>
-<dd><p>A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.</p></dd>
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -112,78 +112,8 @@
 <span class="r-in"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="co"># carry out the test</span></span></span>
 <span class="r-in"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu">meancov.Test</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu">meancov.Test</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k = 3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean of each group is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $setosa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5.006        3.428        1.462        0.246 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $versicolor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        5.936        2.770        4.260        1.326 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $virginica</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length  Sepal.Width Petal.Length  Petal.Width </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        6.588        2.974        5.552        2.026 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The total sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation of each group is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $setosa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length       6.0882      4.8616       0.8014      0.5062</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.8616      7.0408       0.5732      0.4556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       0.8014      0.5732       1.4778      0.2974</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        0.5062      0.4556       0.2974      0.5442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $versicolor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      13.0552       4.174        8.962      2.7332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.1740       4.825        4.050      2.0190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length       8.9620       4.050       10.820      3.5820</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.7332       2.019        3.582      1.9162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $virginica</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      19.8128      4.5944      14.8612      2.4056</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width        4.5944      5.0962       3.4976      2.3338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length      14.8612      3.4976      14.9248      2.3924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        2.4056      2.3338       2.3924      3.6962</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation within group is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length      38.9562     13.6300      24.6246      5.6450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width       13.6300     16.9620       8.1208      4.8084</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length      24.6246      8.1208      27.2226      6.2718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width        5.6450      4.8084       6.2718      6.1566</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio            1.767862e-155                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio (Modified) 2.200389e-152                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M                            6.984086e+02                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2                         6.809880e+02       0 41.3371381514274</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom of Chi-square statistic is:Chi2( 28 )</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The Modified factor is: 0.0249433106575964</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
-<span class="r-in"><span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu">meancov.Test</span><span class="op">(</span><span class="va">chart</span>, <span class="va">species</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k = 3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio            1.767862e-155                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio (Modified) 2.200389e-152                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> M                            6.984086e+02                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2                         6.809880e+02       0 41.3371381514274</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="co"># get the elements</span></span></span>
 <span class="r-in"><span><span class="va">test1</span><span class="op">$</span><span class="va">Stat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     Value p.value   Critical.Value</span>

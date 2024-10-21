@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">indTest.multi</span><span class="op">(</span><span class="va">data</span>, subdim <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, detail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">indTest.multi</span><span class="op">(</span><span class="va">data</span>, subdim <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,8 +58,8 @@
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
 
-<dt id="arg-detail">detail<a class="anchor" aria-label="anchor" href="#arg-detail"></a></dt>
-<dd><p>A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.</p></dd>
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -102,86 +102,9 @@
 <span class="r-in"><span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="co"># carry out the test</span></span></span>
 <span class="r-in"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu">indTest.multi</span><span class="op">(</span><span class="va">chart</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: The random vectors are independent of each other</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation of Submatrix is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 102.1683</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 28.30693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 464.3254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 86.56993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value  Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> V                 8.109611e-03                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 1.496239e-157                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              7.069592e+02       0 12.591587243744</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Chi2( 6 )"</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The Modify Factor is: 146.833333333333</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu">indTest.multi</span><span class="op">(</span><span class="va">chart</span>, subdim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu">indTest.multi</span><span class="op">(</span><span class="va">chart</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> H0: The random vectors are independent of each other</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation of Submatrix is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 464.3254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 86.56993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> V                 8.223278e-03                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 4.249857e-157                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              7.042754e+02       0 11.0704976935164</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Chi2( 5 )"</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The Modify Factor is: 146.7</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
-<span class="r-in"><span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu">indTest.multi</span><span class="op">(</span><span class="va">chart</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: The random vectors are independent of each other</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value  Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> V                 8.109611e-03                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 1.496239e-157                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              7.069592e+02       0 12.591587243744</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="co"># get the elements</span></span></span>
 <span class="r-in"><span><span class="va">test1</span><span class="op">$</span><span class="va">Stat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value  Critical.Value</span>

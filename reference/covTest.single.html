@@ -39,7 +39,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">data</span>, <span class="va">Sigma0</span>, ball <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, detail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">covTest.single</span><span class="op">(</span><span class="va">data</span>, <span class="va">Sigma0</span>, ball <span class="op">=</span> <span class="cn">FALSE</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -62,8 +62,8 @@
 <dd><p>The significance level. Default is 0.05.</p></dd>
 
 
-<dt id="arg-detail">detail<a class="anchor" aria-label="anchor" href="#arg-detail"></a></dt>
-<dd><p>A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.</p></dd>
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -120,69 +120,10 @@ Return when ball is FALSE.</p>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="co"># carry out the test</span></span></span>
 <span class="r-in"><span><span class="va">test1</span> <span class="op">&lt;-</span> <span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: Sigma = Sigma0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 3.829315e-223                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              1.024268e+03       0 18.3070380532751</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom of Chi-square statistic is:Chi2( 10 )</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="va">test2</span> <span class="op">&lt;-</span> <span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, ball <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: Sigma = sigma^2 * Sigma0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The estimation of sigma^2 is: 1.13561766666667</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 8.616505e-321                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> W                 5.400950e-05                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              1.448568e+03       0 16.9189776046204</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom of Chi-square statistic is:Chi2( 9 )</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="va">test3</span> <span class="op">&lt;-</span> <span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>, ball <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> H0: Sigma = sigma^2 * Sigma0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample mean is: (5.84333.05733.7581.1993)'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The sample deviation is:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Length   102.168333   -6.322667     189.8730    76.92433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sepal.Width     -6.322667   28.306933     -49.1188   -18.12427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Length   189.873000  -49.118800     464.3254   193.04580</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Petal.Width     76.924333  -18.124267     193.0458    86.56993</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The estimation of sigma^2 is: 0.567808833333333</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 8.616505e-321                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> W                 5.400950e-05                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              1.448568e+03       0 16.9189776046204</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The degree of freedom of Chi-square statistic is:Chi2( 9 )</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
-<span class="r-in"><span><span class="va">test4</span> <span class="op">&lt;-</span> <span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">test4</span> <span class="op">&lt;-</span> <span class="fu">covTest.single</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> H0: Sigma = Sigma0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The statistics, p value and critical value are:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Likelihood Ratio 3.829315e-223                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi2              1.024268e+03       0 18.3070380532751</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Conclusion: Reject</span>
 <span class="r-in"><span><span class="co"># get the elements</span></span></span>
 <span class="r-in"><span><span class="va">test1</span><span class="op">$</span><span class="va">Stat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          Value p.value   Critical.Value</span>
