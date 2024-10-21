@@ -4,7 +4,7 @@
 \alias{covTest.single}
 \title{Single Covariance Matrix Hypothesis Testing}
 \usage{
-covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE)
+covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, verbose = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -15,7 +15,7 @@ covTest.single(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
+\item{verbose}{A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.}
 }
 \value{
 An object of class "testResult", which is a list with the following elements:
@@ -43,7 +43,7 @@ X <- iris[, 1:4]
 test1 <- covTest.single(X, diag(1, 4))
 test2 <- covTest.single(X, diag(1, 4), ball = TRUE)
 test3 <- covTest.single(X, diag(2, 4), ball = TRUE)
-test4 <- covTest.single(X, diag(1, 4), detail = FALSE)
+test4 <- covTest.single(X, diag(1, 4), verbose = FALSE)
 # get the elements
 test1$Stat
 test2$Df

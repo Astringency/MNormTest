@@ -256,12 +256,13 @@ for testing:
 test.iris <- covTest.multi(chart, species)
 ```
 
-如果您想输出更简洁的结果，可以设置 `detail = FALSE`:
+如果您想查看检验的原假设，可以设置 `verbose = FALSE`:
 
-If you want a more concise result, you can set `detail = FALSE`:
+If you want to see the null hypothesis of the test, you can set
+`verbose = FALSE`:
 
 ``` r
-test.iris <- covTest.multi(chart, species, detail = FALSE)
+test.iris <- covTest.multi(chart, species, verbose = FALSE)
 ```
 
 计算得$\chi^2$统计量为140.94，$p = 0.0000 < 0.05 = \alpha$（$p$值很小，在`R`的运算中直接算成0了），故拒绝原假设，认为在显著性水平$\alpha = 0.05$下，三种鸢尾花的协方差矩阵不相等.

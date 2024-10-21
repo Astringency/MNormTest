@@ -4,7 +4,7 @@
 \alias{meanTest.single}
 \title{Single Mean Vector Hypothesis Testing}
 \usage{
-meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE)
+meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, verbose = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame.}
@@ -15,7 +15,7 @@ meanTest.single(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
+\item{verbose}{A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.}
 }
 \value{
 An object of class "testResult", which is a list with the following elements:
@@ -35,7 +35,7 @@ mu0 <- c(5.8, 3.0, 4.3, 1.3)
 # carry out the test
 test1 <- meanTest.single(X, mu0)
 test2 <- meanTest.single(X, mu0, Sigma0 = diag(1, 4))
-test3 <- meanTest.single(X, mu0, detail = FALSE)
+test3 <- meanTest.single(X, mu0, verbose = FALSE)
 # get the elements
 test1$Stat
 test1$SampMean

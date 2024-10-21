@@ -10,7 +10,7 @@ meanTest.two(
   alpha = 0.05,
   equal = TRUE,
   method = c("None", "Coupled", "Transformed"),
-  detail = TRUE
+  verbose = TRUE
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ meanTest.two(
 
 \item{method}{A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
+\item{verbose}{A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.}
 }
 \value{
 An object of class "testResult", which is a list with the following elements:
@@ -61,7 +61,7 @@ X <- iris[1:50, 1:4]
 Y <- iris[51:100, 1:4]
 # carry out the test
 test1 <- meanTest.two(X, Y)
-test2 <- meanTest.two(X, Y, detail = TRUE)
+test2 <- meanTest.two(X, Y, verbose = TRUE)
 test3 <- meanTest.two(X, Y, equal = FALSE, method = "Coupled")
 test4 <- meanTest.two(X, Y, equal = FALSE, method = "Transformed")
 # get the elements

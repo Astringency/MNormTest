@@ -4,7 +4,7 @@
 \alias{indTest.multi}
 \title{Multivariate Normal Independence Test}
 \usage{
-indTest.multi(data, subdim = FALSE, alpha = 0.05, detail = TRUE)
+indTest.multi(data, subdim = FALSE, alpha = 0.05, verbose = TRUE)
 }
 \arguments{
 \item{data}{The data matrix which is a matrix or data frame. Each column represents a random variable.}
@@ -13,7 +13,7 @@ indTest.multi(data, subdim = FALSE, alpha = 0.05, detail = TRUE)
 
 \item{alpha}{The significance level. Default is 0.05.}
 
-\item{detail}{A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.}
+\item{verbose}{A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.}
 }
 \value{
 An object of class "testResult", which is a list with the following elements:
@@ -34,7 +34,7 @@ chart <- iris[, 1:4]
 # carry out the test
 test1 <- indTest.multi(chart)
 test2 <- indTest.multi(chart, subdim = c(2, 1, 1))
-test3 <- indTest.multi(chart, detail = FALSE)
+test3 <- indTest.multi(chart, verbose = FALSE)
 # get the elements
 test1$Stat
 test1$SampMean

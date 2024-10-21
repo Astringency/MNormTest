@@ -5,7 +5,7 @@
 #' @param mu0 The mean vector when the null hypothesis is true.
 #' @param Sigma0 The population covariance matrix. Default is FALSE which means the covariance matrix is unknown.
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.66-68.
@@ -24,13 +24,13 @@
 #' # carry out the test
 #' test1 <- meanTest.single(X, mu0)
 #' test2 <- meanTest.single(X, mu0, Sigma0 = diag(1, 4))
-#' test3 <- meanTest.single(X, mu0, detail = FALSE)
+#' test3 <- meanTest.single(X, mu0, verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test1$SampMean
 #' test1$SampA
 #' test1$Df
-meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TRUE) {
+meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, verbose = TRUE) {
   data <- as.matrix(data)
   n <- nrow(data)
   p <- ncol(data)
@@ -58,22 +58,10 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TR
 
     testResult <- list(Conclusion = reject, Stat = statistics, SampMean = X.bar, SampA = A, Df = dof)
 
-    if (detail) {
-      message("H0: mu = (", toString(mu0), ")' when Sigma is unknown\n")
-      message("The sample mean is: (", round(testResult$SampMean, 4), ")'\n")
-      message("The sample deviation is:")
-      print(testResult$SampA)
-      message("\nThe statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nThe degree of freedom is:")
-      print(testResult$Df)
-      message("\nConclusion: ", reject, "\n")
+    if (verbose) {
       return(testResult)
     } else {
       message("H0: mu = (", toString(mu0), ")' when Sigma is unknown\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("Conclusion: ", testResult$Conclusion, "\n")
       return(testResult)
     }
   } else {
@@ -91,19 +79,10 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TR
 
     testResult <- list(Conclusion = reject, Stat = statistics, SampMean = X.bar, SampA = Sigma0, Df = paste("Chi2(", p, ")"))
 
-    if (detail) {
-      message("H0: mu = (", toString(mu0), ")' when Sigma is known\n")
-      message("The sample mean is: (", round(testResult$SampMean, 4), ")'\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nThe degree of Chi-square is: ", p, "\n")
-      message("Conclusion: ", testResult$Conclusion, "\n")
+    if (verbose) {
       return(testResult)
     } else {
       message("H0: mu = (", toString(mu0), ")' when Sigma is known\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("Conclusion: ", testResult$Conclusion, "\n")
       return(testResult)
     }
   }
@@ -117,7 +96,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TR
 #' @param alpha The significance level. Default is 0.05.
 #' @param equal A boolean value. Default is TRUE. If TRUE, the covariance matrix is equal. If FALSE, the covariance matrix is not equal.
 #' @param method A string value. Default is "None". When equal is FALSE, you must choose a method in "Coupled" or "Transformed". Choose "Coupled" when the sample size of two groups is equal. Choose "Transformed" when the sample size of two groups is not equal.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.76-80.
@@ -153,7 +132,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TR
 #' Y <- iris[51:100, 1:4]
 #' # carry out the test
 #' test1 <- meanTest.two(X, Y)
-#' test2 <- meanTest.two(X, Y, detail = TRUE)
+#' test2 <- meanTest.two(X, Y, verbose = TRUE)
 #' test3 <- meanTest.two(X, Y, equal = FALSE, method = "Coupled")
 #' test4 <- meanTest.two(X, Y, equal = FALSE, method = "Transformed")
 #' # get the elements
@@ -161,7 +140,7 @@ meanTest.single <- function(data, mu0, Sigma0 = FALSE, alpha = 0.05, detail = TR
 #' test1$SampMean1
 #' test3$SampMeanC
 #' test4$dataT
-meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("None", "Coupled", "Transformed"), detail = TRUE) {
+meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("None", "Coupled", "Transformed"), verbose = TRUE) {
   n1 <- nrow(data1)
   n2 <- nrow(data2)
   p <- ncol(data1)
@@ -195,27 +174,10 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 
     testResult <- list(Conclusion = reject, Stat = statistics, SampMean1 = X.bar, SampMean2 = Y.bar, SampA1 = A1, SampA2 = A2, Df = dof, MixSampA = A)
 
-    if (detail) {
-      message("H0: mu1 = mu2 with unknown but equal covariance matrix\n")
-      message("The sample mean of group 1 is: (", round(testResult$SampMean1, 4), ")'\n")
-      message("The sample deviation of group 1 is:")
-      print(testResult$SampA1)
-      message("\nThe sample mean of group 2 is: (", round(testResult$SampMean2, 4), ")'\n")
-      message("The sample deviation of group 2 is:")
-      print(testResult$SampA2)
-      message("\nThe mixed sample deviation is:")
-      print(testResult$MixSampA)
-      message("\nThe statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nThe degree of freedom is:")
-      print(testResult$Df)
-      message("\nConclusion: ", reject, "\n")
+    if (verbose) {
       return(testResult)
     } else {
       message("H0: mu1 = mu2 with unknown but equal covariance matrix\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nConclusion: ", reject, "\n")
       return(testResult)
     }
   } else {
@@ -247,22 +209,10 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 
       testResult <- list(Conclusion = reject, Stat = statistics, SampMeanC = Z.bar, SampAC = Z.A, Df = dof, dataC = dataCoup)
 
-      if (detail) {
-        message("H0: mu1 = mu2 with unknown and different covariance matrix\n")
-        message("The coupled sample mean is: (", round(testResult$SampMeanC, 4), ")'\n")
-        message("The coupled sample deviation is:")
-        print(testResult$SampAC)
-        message("\nThe statistics, p value and critical value are:")
-        print(testResult$Stat)
-        message("\nThe degree of freedom is:")
-        print(testResult$Df)
-        message("\nConclusion: ", reject, "\n")
+      if (verbose) {
         return(testResult)
       } else {
         message("H0: mu1 = mu2 with unknown and different covariance matrix\n")
-        message("The statistics, p value and critical value are:")
-        print(testResult$Stat)
-        message("\nConclusion: ", reject, "\n")
         return(testResult)
       }
     } else if (method == "Coupled" && n1 != n2) {
@@ -307,22 +257,10 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 
       testResult <- list(Conclusion = reject, Stat = statistics, SampMeanT = Z.bar, SampAT = Z.A, Df = dof, dataT = dataTranf)
 
-      if (detail) {
-        message("H0: mu1 = mu2, with unknown but different covariance matrix\n")
-        message("The sample mean is: (", round(testResult$SampMeanT, 4), ")'\n")
-        message("The sample deviation is:")
-        print(testResult$SampAT)
-        message("\nThe statistics, p value and critical value are:")
-        print(testResult$Stat)
-        message("\nThe degree of freedom is:")
-        print(testResult$Df)
-        message("\nConclusion: ", reject, "\n")
+      if (verbose) {
         return(testResult)
       } else {
         message("H0: mu1 = mu2, with unknown but different covariance matrix\n")
-        message("The statistics, p value and critical value are:")
-        print(testResult$Stat)
-        message("\nConclusion: ", reject, "\n")
         return(testResult)
       }
     }
@@ -335,7 +273,7 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.80-83.
@@ -358,12 +296,12 @@ meanTest.two <- function(data1, data2, alpha = 0.05, equal = TRUE, method = c("N
 #' species <- iris[, 5]
 #' # carry out the test
 #' test1 <- meanTest.multi(chart, species)
-#' test2 <- meanTest.multi(chart, species, detail = FALSE)
+#' test2 <- meanTest.multi(chart, species, verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test1$SampMeanT
 #' test1$sampleSize
-meanTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
+meanTest.multi <- function(X, label, alpha = 0.05, verbose = TRUE) {
   data <- cbind(X, label)
   X <- as.matrix(X)
   n <- nrow(X)
@@ -417,30 +355,10 @@ meanTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 
   testResult <- list(Conclusion = reject, Stat = statistics, SampMeanT = X.bar, SampMeanWithin = Within.mean, SdTotal = T, SdBetween = B, SdWithin = At, SdWithinT = A, Df = dof, sampleSize = nt)
 
-  if (detail) {
-    message("H0: mu1 = mu2 = ... = muk, k = ", k, "\n")
-    message("The sample mean is: (", round(testResult$SampMeanT, 4), ")'\n")
-    message("The sample mean within group is:")
-    print(testResult$SampMeanWithin)
-    message("\nThe total sample deviation is:")
-    print(testResult$SdTotal)
-    message("\nThe sample deviation between group is:")
-    print(testResult$SdBetween)
-    message("\nThe sample deviation within group is:")
-    print(testResult$SdWithin)
-    message("\nThe sample deviation within group (total) is:")
-    print(testResult$SdWithinT)
-    message("\nThe statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("\nThe degree of freedom is:")
-    print(testResult$Df)
-    message("\nConclusion: ", reject, "\n")
+  if (verbose) {
     return(testResult)
   } else {
     message("H0: mu1 = mu2 = ... = muk, k = ", k, "\n")
-    message("The statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("\nConclusion: ", reject, "\n")
     return(testResult)
   }
 }
@@ -452,7 +370,7 @@ meanTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' @param Sigma0 The covariance matrix when the null hypothesis is true.
 #' @param ball A boolean value. Default is FALSE. If FALSE, test whether the covariance matrix is Sigma0 (known), which means the null hypothesis is "H0: Sigma = Sigma0". If TRUE and the Sigma0 is a unit matrix, the Mauchly's ball test will be performed. If TRUE but Sigma0 (known) is not a unit matrix, the covariance matrix will be tested to see if it is sigma^2*Sigma0 (sigma^2 is unknown), which means the null hypothesis is "H0: Sigma = sigma^2 * Sigma0".
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @importFrom Rmpfr mpfr
@@ -480,12 +398,12 @@ meanTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' test1 <- covTest.single(X, diag(1, 4))
 #' test2 <- covTest.single(X, diag(1, 4), ball = TRUE)
 #' test3 <- covTest.single(X, diag(2, 4), ball = TRUE)
-#' test4 <- covTest.single(X, diag(1, 4), detail = FALSE)
+#' test4 <- covTest.single(X, diag(1, 4), verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test2$Df
 #' test3$sigma.hat
-covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TRUE) {
+covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, verbose = TRUE) {
   data <- as.matrix(data)
   n <- nrow(data)
   p <- ncol(data)
@@ -518,21 +436,10 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TR
 
     testResult <- list(Conclusion = reject, Stat = statistics, SampMean = X.bar, SampA = A, Df = dof)
 
-    if (detail) {
-      message("H0: Sigma = Sigma0\n")
-      message("The sample mean is: (", round(testResult$SampMean, 4), ")'\n")
-      message("The sample deviation is:")
-      print(testResult$SampA)
-      message("\nThe statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nThe degree of freedom of Chi-square statistic is:", testResult$Df, "\n")
-      message("Conclusion: ", testResult$Conclusion, "\n")
+    if (verbose) {
       return(testResult)
     } else {
       message("H0: Sigma = Sigma0\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("Conclusion: ", testResult$Conclusion, "\n")
       return(testResult)
     }
   } else {
@@ -562,22 +469,10 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TR
 
     testResult <- list(Conclusion = reject, Stat = statistics, SampMean = X.bar, SampA = A, Df = dof, sigma.hat = sigma.hat)
 
-    if (detail) {
-      message("H0: Sigma = sigma^2 * Sigma0\n")
-      message("The sample mean is: (", round(testResult$SampMean, 4), ")'\n")
-      message("The sample deviation is:")
-      print(testResult$SampA)
-      message("\nThe estimation of sigma^2 is: ", testResult$sigma.hat, "\n")
-      message("\nThe statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("\nThe degree of freedom of Chi-square statistic is:", testResult$Df, "\n")
-      message("Conclusion: ", testResult$Conclusion, "\n")
+    if (verbose) {
       return(testResult)
     } else {
       message("H0: Sigma = sigma^2 * Sigma0\n")
-      message("The statistics, p value and critical value are:")
-      print(testResult$Stat)
-      message("Conclusion: ", testResult$Conclusion, "\n")
       return(testResult)
     }
   }
@@ -589,7 +484,7 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TR
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @importFrom Rmpfr mpfr
@@ -612,12 +507,12 @@ covTest.single <- function(data, Sigma0, ball = FALSE, alpha = 0.05, detail = TR
 #' species <- iris[, 5]
 #' # carry out the test
 #' test1 <- covTest.multi(chart, species)
-#' test2 <- covTest.multi(chart, species, detail = FALSE)
+#' test2 <- covTest.multi(chart, species, verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test1$SampMeanT
 #' test1$sampleSize
-covTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
+covTest.multi <- function(X, label, alpha = 0.05, verbose = TRUE) {
   data <- data.frame(cbind(X, label))
   X <- as.matrix(X)
   n <- nrow(X)
@@ -685,26 +580,10 @@ covTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 
   testResult <- list(Conclusion = reject, Stat = statistics, SampMeanT = X.bar, SampMeanWithin = Within.mean, SdWithin = At, SdWithinT = A, Df = dof, sampleSize = nt, d = d)
 
-  if (detail) {
-    message("H0: Sigma1 = Sigma2 = ... = Sigmak, k = ", k, "\n")
-    message("The sample mean is: (", round(testResult$SampMeanT, 4), ")'\n")
-    message("The sample mean of each group is:")
-    print(testResult$SampMeanWithin)
-    message("\nThe sample deviation of each group is:")
-    print(testResult$SdWithin)
-    message("\nThe sample deviation within group is:")
-    print(testResult$SdWithinT)
-    message("\nThe statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("\nThe degree of freedom of Chi-square statistic is:", testResult$Df, "\n")
-    message("The Modified factor is: ", testResult$d, "\n")
-    message("Conclusion: ", testResult$Conclusion, "\n")
+  if (verbose) {
     return(testResult)
   } else {
     message("H0: Sigma1 = Sigma2 = ... = Sigmak, k = ", k, "\n")
-    message("The statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("Conclusion: ", testResult$Conclusion, "\n")
     return(testResult)
   }
 }
@@ -715,7 +594,7 @@ covTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' @param X The data matrix which is a matrix or data frame.
 #' @param label A vector of group labels.
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @importFrom Rmpfr mpfr
@@ -739,11 +618,11 @@ covTest.multi <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' species <- iris[, 5]
 #' # carry out the test
 #' test1 <- meancov.Test(chart, species)
-#' test2 <- meancov.Test(chart, species, detail = FALSE)
+#' test2 <- meancov.Test(chart, species, verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test1$SampMeanT
-meancov.Test <- function(X, label, alpha = 0.05, detail = TRUE) {
+meancov.Test <- function(X, label, alpha = 0.05, verbose = TRUE) {
   data <- data.frame(cbind(X, label))
   X <- as.matrix(X)
   n <- nrow(X)
@@ -804,28 +683,10 @@ meancov.Test <- function(X, label, alpha = 0.05, detail = TRUE) {
 
   testResult <- list(Conclusion = reject, Stat = statistics, SampMeanT = X.bar, SampMeanWithin = Within.mean, SdTotal = T, SdWithin = At, SdWithinT = A, Df = dof, sampleSize = nt, d = d)
 
-  if (detail) {
-    message("H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k = ", k, "\n")
-    message("The sample mean is: (", round(testResult$SampMeanT, 4), ")'\n")
-    message("The sample mean of each group is:")
-    print(testResult$SampMeanWithin)
-    message("\nThe total sample deviation is:")
-    print(testResult$SdTotal)
-    message("\nThe sample deviation of each group is:")
-    print(testResult$SdWithin)
-    message("\nThe sample deviation within group is:")
-    print(testResult$SdWithinT)
-    message("\nThe statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("\nThe degree of freedom of Chi-square statistic is:", testResult$Df, "\n")
-    message("The Modified factor is: ", testResult$d, "\n")
-    message("Conclusion: ", testResult$Conclusion, "\n")
+  if (verbose) {
     return(testResult)
   } else {
     message("H0: mu1 = mu2 = ... = muk, Sigma1 = Sigma2 = ... = Sigmak, k = ", k, "\n")
-    message("The statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("Conclusion: ", testResult$Conclusion, "\n")
     return(testResult)
   }
 }
@@ -836,7 +697,7 @@ meancov.Test <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' @param data The data matrix which is a matrix or data frame. Each column represents a random variable.
 #' @param subdim The dimensions of submatrices. The default is FALSE, which means the independence of all components of the random vector will be tested.
 #' @param alpha The significance level. Default is 0.05.
-#' @param detail A boolean value. Default is TRUE. If TRUE, the detail of the test result will be displayed. If FALSE, a simple summary will be displayed.
+#' @param verbose A boolean value. Default is TRUE. If TRUE, the null hypothesis will be displayed. If FALSE, the test will be carried out silently.
 #' @import stats
 #' @import utils
 #' @references Huixuan, Gao. Applied Multivariate Statistical Analysis. Peking University Press, 2005: pp.92-94.
@@ -856,12 +717,12 @@ meancov.Test <- function(X, label, alpha = 0.05, detail = TRUE) {
 #' # carry out the test
 #' test1 <- indTest.multi(chart)
 #' test2 <- indTest.multi(chart, subdim = c(2, 1, 1))
-#' test3 <- indTest.multi(chart, detail = FALSE)
+#' test3 <- indTest.multi(chart, verbose = FALSE)
 #' # get the elements
 #' test1$Stat
 #' test1$SampMean
 #' test2$SampAii
-indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, detail = TRUE) {
+indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, verbose = TRUE) {
   n <- nrow(data)
   p <- ncol(data)
 
@@ -905,25 +766,10 @@ indTest.multi <- function(data, subdim = FALSE, alpha = 0.05, detail = TRUE) {
 
   testResult <- list(Conclusion = reject, Stat = statistics, SampMean = X.bar, SampA = A, SampAii = Aii, Df = dof, b = b)
 
-  if (detail) {
-    message("H0: The random vectors are independent of each other\n")
-    message("The sample mean is: (", testResult$SampMean, ")'\n")
-    message("The sample deviation is:")
-    print(testResult$SampA)
-    message("\nThe sample deviation of Submatrix is:")
-    print(testResult$SampAii)
-    message("\nThe statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("\nThe degree of freedom is:")
-    print(testResult$Df)
-    message("The Modify Factor is: ", testResult$b, "\n")
-    message("Conclusion: ", testResult$Conclusion, "\n")
+  if (verbose) {
     return(testResult)
   } else {
     message("H0: The random vectors are independent of each other\n")
-    message("The statistics, p value and critical value are:")
-    print(testResult$Stat)
-    message("Conclusion: ", testResult$Conclusion, "\n")
     return(testResult)
   }
 }
