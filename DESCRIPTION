@@ -1,6 +1,6 @@
 Package: MNormTest
 Title: Multivariate Normal Hypothesis Testing
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     person("Xifeng", "Zhang", , "cnxifeng9819@163.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-8878-3753"))
